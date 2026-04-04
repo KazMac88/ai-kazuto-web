@@ -344,15 +344,15 @@ footer a{color:var(--blue)}
   .sec-desc{font-size:.82rem;line-height:1.7;max-width:100%}
 
   /* --- Hero compact --- */
-  .hero{min-height:auto;padding:80px 16px 48px}
-  .hero-eyebrow{font-size:.68rem;margin-bottom:10px}
-  .hero-title{font-size:2rem;letter-spacing:-1.5px;line-height:1.1;margin-bottom:6px}
-  .hero-sub{font-size:1.15rem;letter-spacing:-.3px;margin-bottom:14px}
-  .hero-desc{font-size:.82rem;line-height:1.6;margin-bottom:24px;max-width:100%}
+  .hero{min-height:auto;padding:100px 20px 56px}
+  .hero-eyebrow{font-size:.7rem;margin-bottom:14px}
+  .hero-title{font-size:2.1rem;letter-spacing:-1.5px;line-height:1.25;margin-bottom:12px}
+  .hero-sub{font-size:1.15rem;letter-spacing:-.3px;line-height:1.4;margin-bottom:20px}
+  .hero-desc{font-size:.85rem;line-height:1.8;margin-bottom:28px;max-width:100%}
   .hero-desc br{display:none}
-  .hero-cta{gap:8px}
+  .hero-cta{gap:10px}
   .btn-apple{padding:12px 24px;font-size:.82rem}
-  .hero-cards{margin-top:36px;gap:8px}
+  .hero-cards{margin-top:40px;gap:10px}
   .hero-card{width:120px;height:170px;border-radius:var(--radius-md)}
 
   /* --- Stats compact --- */
@@ -420,22 +420,20 @@ footer a{color:var(--blue)}
   .opt-note{font-size:.65rem;margin-top:16px}
   .opt-note br{display:none}
 
-  /* --- Flow → horizontal scroll carousel --- */
+  /* --- Flow → 2x2 grid --- */
   .flow-grid{
-    display:flex;overflow-x:auto;scroll-snap-type:x mandatory;
-    -webkit-overflow-scrolling:touch;scrollbar-width:none;
-    gap:12px;margin-top:32px;padding:0 0 16px;
+    display:grid;grid-template-columns:1fr 1fr;
+    gap:10px;margin-top:28px;
   }
-  .flow-grid::-webkit-scrollbar{display:none}
   .flow-card{
-    flex-shrink:0;width:200px;scroll-snap-align:start;
-    padding:24px 16px;border-radius:var(--radius-md);
+    padding:20px 14px;border-radius:var(--radius-md);
   }
   .flow-arrow{display:none}
-  .flow-num{font-size:2rem;margin-bottom:8px}
-  .flow-icon{width:36px;height:36px;margin-bottom:10px}
-  .flow-name{font-size:.8rem}
-  .flow-text{font-size:.65rem}
+  .flow-num{font-size:1.6rem;margin-bottom:6px}
+  .flow-icon{width:32px;height:32px;margin-bottom:8px}
+  .flow-icon svg{width:16px;height:16px}
+  .flow-name{font-size:.78rem;margin-bottom:2px}
+  .flow-text{font-size:.62rem;line-height:1.5}
 
   /* --- Showcase compact --- */
   .showcase{padding:56px 0;overflow:hidden}
@@ -490,7 +488,6 @@ footer a{color:var(--blue)}
   .cta-icon{width:48px;height:48px;margin-bottom:16px}
   .cta-icon svg{width:22px;height:22px}
   .cta-title{font-size:1.6rem;letter-spacing:-1px;margin-bottom:10px}
-  .cta-title br{display:none}
   .cta-desc{font-size:.82rem;line-height:1.7;margin-bottom:24px}
   .cta-desc br{display:none}
 
@@ -604,7 +601,7 @@ footer a{color:var(--blue)}
 <!-- Pricing -->
 <section class="section-white" id="pricing"><div class="section-inner">
   <p class="sec-eyebrow reveal">Pricing</p>
-  <h2 class="sec-headline reveal rd1">シンプルで、わかりやすい料金。</h2>
+  <h2 class="sec-headline reveal rd1">シンプルで、<br>わかりやすい料金。</h2>
   <p class="sec-desc reveal rd2">ランニング費用は一切なし。すべて買い切りです。</p>
   <div class="price-grid">
     <div class="price-card reveal rd1">
@@ -730,7 +727,7 @@ footer a{color:var(--blue)}
     <div class="testi-card reveal rd2">
       <div class="testi-stars"><svg class="testi-star" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg><svg class="testi-star" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg><svg class="testi-star" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg><svg class="testi-star" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg><svg class="testi-star" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg></div>
       <div class="testi-text">長い付き合いのKAZUTOに老人ホームの検索サイトを作ってもらいました。こちらの細かい要望にも全部対応してくれて、しかも爆速。頼んでよかった！</div>
-      <div class="testi-author"><div class="testi-avatar"><img src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=72&h=72&fit=crop&q=80" alt=""></div><div class="testi-info"><span class="testi-name">S.M</span><span class="testi-role">老人ホームガイド運営 / 長年の仲間</span></div></div>
+      <div class="testi-author"><div class="testi-avatar"><img src="https://images.unsplash.com/photo-1560250097-0b93528c311a?w=72&h=72&fit=crop&q=80" alt=""></div><div class="testi-info"><span class="testi-name">T.A</span><span class="testi-role">老人ホームガイド運営 / 長年の仲間</span></div></div>
     </div>
     <div class="testi-card reveal rd3">
       <div class="testi-stars"><svg class="testi-star" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg><svg class="testi-star" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg><svg class="testi-star" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg><svg class="testi-star" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg><svg class="testi-star" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg></div>
