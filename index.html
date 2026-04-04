@@ -1,0 +1,728 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AI KAZUTO — ホームページ、あったらいいな。を叶えます。</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Noto+Sans+JP:wght@300;400;500;600;700;800;900&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
+<script src="https://unpkg.com/lucide@latest"></script>
+<style>
+/* ============================================
+   AI KAZUTO — Apple-inspired Design System
+   ============================================ */
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth;font-size:16px;-webkit-text-size-adjust:100%}
+body{
+  font-family:'Inter','Noto Sans JP',-apple-system,BlinkMacSystemFont,sans-serif;
+  background:#fff;color:#1d1d1f;overflow-x:hidden;
+  -webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;
+}
+a{color:inherit;text-decoration:none}
+img{max-width:100%;display:block}
+::selection{background:rgba(0,113,227,0.15)}
+:root{
+  --blue:#0071e3;--blue-hover:#0077ED;
+  --text-primary:#1d1d1f;--text-secondary:#6e6e73;--text-tertiary:#86868b;
+  --bg-secondary:#f5f5f7;--border:rgba(0,0,0,0.06);
+  --radius-sm:12px;--radius-md:20px;--radius-lg:28px;--radius-xl:36px;
+  --shadow-sm:0 2px 12px rgba(0,0,0,0.04);--shadow-md:0 4px 24px rgba(0,0,0,0.06);
+  --shadow-lg:0 12px 48px rgba(0,0,0,0.08);--shadow-xl:0 24px 64px rgba(0,0,0,0.1);
+}
+
+/* Nav */
+.scroll-progress{position:fixed;top:0;left:0;height:2px;z-index:10000;background:var(--blue)}
+.nav{
+  position:fixed;top:0;left:0;right:0;z-index:1000;height:48px;
+  display:flex;align-items:center;justify-content:center;
+  background:rgba(255,255,255,0.72);backdrop-filter:saturate(180%) blur(20px);
+  -webkit-backdrop-filter:saturate(180%) blur(20px);
+  border-bottom:0.5px solid rgba(0,0,0,0.08);padding:0 24px;
+}
+.nav-inner{width:100%;max-width:1024px;display:flex;align-items:center;justify-content:space-between}
+.nav-logo{font-weight:800;font-size:1.1rem;letter-spacing:-0.3px;position:relative;display:flex;align-items:center;gap:6px}
+.nav-logo .ai-badge{font-size:.55rem;font-weight:800;letter-spacing:1.5px;padding:2px 7px;border-radius:6px;background:linear-gradient(135deg,#0071e3,#5AC8FA);color:#fff;position:relative;overflow:hidden}
+.nav-logo .ai-badge::after{content:'';position:absolute;inset:-2px;background:linear-gradient(135deg,#0071e3,#5AC8FA,#34C759,#0071e3);background-size:300% 300%;animation:aiShimmer 3s ease-in-out infinite;border-radius:6px;z-index:-1;filter:blur(6px);opacity:.5}
+.ai-glow{position:relative}
+.ai-glow::before{content:'';position:absolute;top:50%;left:50%;width:120%;height:120%;transform:translate(-50%,-50%);background:radial-gradient(ellipse,rgba(0,113,227,.12) 0%,transparent 70%);animation:aiPulse 3s ease-in-out infinite;pointer-events:none;border-radius:50%}
+.nav-links{display:flex;gap:28px}
+.nav-links a{font-size:0.75rem;font-weight:500;color:var(--text-secondary);letter-spacing:0.3px;transition:color 0.3s}
+.nav-links a:hover{color:var(--text-primary)}
+.nav-cta{font-size:0.75rem;font-weight:600;color:#fff;background:var(--blue);padding:6px 16px;border-radius:100px;border:none;cursor:pointer;transition:all 0.3s;font-family:inherit}
+.nav-cta:hover{background:var(--blue-hover)}
+
+/* Hero */
+.hero{
+  min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;
+  text-align:center;padding:120px 24px 80px;
+  background:linear-gradient(180deg,#fff 0%,#f5f5f7 100%);
+}
+.hero-eyebrow{font-size:0.8rem;font-weight:600;color:var(--blue);letter-spacing:0.5px;margin-bottom:16px;opacity:0;transform:translateY(12px);animation:fadeUp .8s .2s forwards}
+.hero-title{font-size:clamp(3rem,8vw,5.5rem);font-weight:800;letter-spacing:-3px;line-height:1.05;margin-bottom:8px;opacity:0;transform:translateY(16px);animation:fadeUp .8s .4s forwards}
+.hero-sub{font-size:clamp(1.5rem,4vw,2.8rem);font-weight:700;letter-spacing:-1px;line-height:1.15;color:var(--text-tertiary);margin-bottom:24px;opacity:0;transform:translateY(16px);animation:fadeUp .8s .5s forwards}
+.hero-desc{font-size:1.05rem;color:var(--text-secondary);line-height:1.7;max-width:480px;margin:0 auto 36px;opacity:0;transform:translateY(16px);animation:fadeUp .8s .6s forwards}
+.hero-cta{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;opacity:0;transform:translateY(16px);animation:fadeUp .8s .7s forwards}
+.btn-apple{padding:14px 32px;border-radius:100px;font-size:.92rem;font-weight:600;cursor:pointer;transition:all .4s cubic-bezier(.16,1,.3,1);display:inline-flex;align-items:center;gap:6px;border:none;font-family:inherit}
+.btn-apple.primary{background:var(--blue);color:#fff;box-shadow:0 4px 16px rgba(0,113,227,.24)}
+.btn-apple.primary:hover{background:var(--blue-hover);transform:scale(1.02)}
+.btn-apple.secondary{background:transparent;color:var(--blue);padding:14px 20px}
+.btn-apple.secondary:hover{text-decoration:underline}
+.btn-apple.secondary .arrow{transition:transform .3s}
+.btn-apple.secondary:hover .arrow{transform:translateX(3px)}
+
+/* Hero cards */
+.hero-cards{margin-top:64px;display:flex;gap:16px;justify-content:center;perspective:1000px;opacity:0;transform:translateY(30px);animation:fadeUp 1s .9s forwards}
+.hero-card{width:200px;height:280px;border-radius:var(--radius-lg);overflow:hidden;box-shadow:var(--shadow-lg);transition:all .6s cubic-bezier(.16,1,.3,1);border:1px solid var(--border);position:relative}
+.hero-card:nth-child(1){transform:rotate(-5deg) translateY(12px)}
+.hero-card:nth-child(2){transform:translateY(-8px);z-index:2}
+.hero-card:nth-child(3){transform:rotate(5deg) translateY(12px)}
+.hero-card:hover{transform:rotate(0) translateY(-16px) scale(1.04)!important;z-index:10;box-shadow:var(--shadow-xl)}
+.hc-inner{width:100%;height:100%;display:flex;flex-direction:column;align-items:center;justify-content:flex-end;gap:0;position:relative}
+.hc-inner.cafe{background:linear-gradient(160deg,#FEF3E2,#F5DEB3)}
+.hc-inner.bar{background:linear-gradient(160deg,#F0EAF8,#D8CCE8)}
+.hc-inner.salon{background:linear-gradient(160deg,#E8F5E9,#C8E6C9)}
+.hc-img{position:absolute;inset:0;object-fit:cover;width:100%;height:100%}
+.hc-overlay{position:absolute;inset:0;background:linear-gradient(180deg,rgba(0,0,0,0) 40%,rgba(0,0,0,0.55) 100%);z-index:1}
+.hc-content{position:relative;z-index:2;padding:16px;text-align:center;width:100%}
+.hc-icon{width:40px;height:40px;border-radius:50%;background:rgba(255,255,255,.25);backdrop-filter:blur(10px);display:flex;align-items:center;justify-content:center;margin:0 auto 6px}
+.hc-icon svg{width:18px;height:18px;stroke-width:1.5;color:#fff}
+.hc-label{font-size:.55rem;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:rgba(255,255,255,.7)}
+.hc-name{font-family:'Playfair Display',serif;font-size:1rem;font-weight:600;color:#fff;font-style:italic}
+
+/* Sections */
+.section-white{background:#fff;padding:120px 24px}
+.section-gray{background:var(--bg-secondary);padding:120px 24px}
+.section-inner{max-width:1024px;margin:0 auto}
+.sec-eyebrow{font-size:.8rem;font-weight:600;color:var(--blue);letter-spacing:.3px;margin-bottom:8px}
+.sec-headline{font-size:clamp(2.2rem,5vw,3.5rem);font-weight:800;letter-spacing:-1.5px;line-height:1.1;margin-bottom:8px}
+.sec-desc{font-size:.95rem;color:var(--text-secondary);line-height:1.8;max-width:520px}
+
+/* Reveal */
+.reveal{opacity:0;transform:translateY(24px);transition:opacity .8s cubic-bezier(.25,.46,.45,.94),transform .8s cubic-bezier(.25,.46,.45,.94)}
+.reveal.active{opacity:1;transform:translateY(0)}
+.rd1{transition-delay:.08s}.rd2{transition-delay:.16s}.rd3{transition-delay:.24s}
+.rd4{transition-delay:.32s}.rd5{transition-delay:.4s}.rd6{transition-delay:.48s}
+
+/* Concept */
+.concept-grid{display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:center;margin-top:64px}
+.concept-visual{border-radius:var(--radius-xl);background:var(--bg-secondary);padding:48px;min-height:420px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:24px;box-shadow:var(--shadow-sm);border:1px solid var(--border)}
+.cv-ig{display:flex;align-items:center;gap:12px;padding:14px 24px;border-radius:var(--radius-md);background:#fff;box-shadow:var(--shadow-sm);border:1px solid var(--border)}
+.cv-ig-icon{width:36px;height:36px;border-radius:10px;background:linear-gradient(135deg,#E1306C,#F77215,#FCAF45);display:flex;align-items:center;justify-content:center}
+.cv-ig-icon svg{width:18px;height:18px;fill:#fff;stroke:none}
+.cv-ig span{font-weight:600;font-size:.85rem}
+.cv-arrow{color:var(--text-tertiary);animation:arrowDown 2s ease-in-out infinite}
+.cv-arrow svg{width:24px;height:24px}
+.cv-phone{width:180px;border-radius:var(--radius-lg);background:#fff;box-shadow:var(--shadow-md);border:1px solid var(--border);padding:16px}
+.cv-ph-bar{height:6px;border-radius:3px;background:linear-gradient(90deg,var(--blue),#5AC8FA);margin-bottom:10px}
+.cv-ph-img{height:60px;border-radius:var(--radius-sm);background:var(--bg-secondary);margin-bottom:8px}
+.cv-ph-line{height:4px;border-radius:2px;background:#f0f0f0;margin-bottom:5px}
+.cv-ph-line.short{width:55%}
+
+/* Features */
+.feat-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:56px}
+.feat-card{padding:36px 28px;border-radius:var(--radius-lg);background:#fff;border:1px solid var(--border);transition:all .6s cubic-bezier(.16,1,.3,1)}
+.feat-card:hover{transform:translateY(-4px);box-shadow:var(--shadow-md);border-color:rgba(0,0,0,.1)}
+.feat-icon{width:48px;height:48px;border-radius:var(--radius-sm);display:flex;align-items:center;justify-content:center;margin-bottom:20px}
+.feat-icon svg{width:24px;height:24px;stroke-width:1.6}
+.fi-blue{background:rgba(0,113,227,.08)}.fi-blue svg{color:var(--blue)}
+.fi-green{background:rgba(52,199,89,.08)}.fi-green svg{color:#34C759}
+.fi-orange{background:rgba(255,149,0,.08)}.fi-orange svg{color:#FF9500}
+.fi-purple{background:rgba(175,82,222,.08)}.fi-purple svg{color:#AF52DE}
+.fi-red{background:rgba(255,59,48,.08)}.fi-red svg{color:#FF3B30}
+.fi-teal{background:rgba(90,200,250,.08)}.fi-teal svg{color:#5AC8FA}
+.feat-title{font-size:1rem;font-weight:700;margin-bottom:6px;letter-spacing:-.2px}
+.feat-text{font-size:.82rem;color:var(--text-tertiary);line-height:1.7}
+
+/* Pricing */
+.price-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:56px}
+.price-card{padding:40px 28px;border-radius:var(--radius-lg);background:#fff;border:1px solid var(--border);transition:all .6s cubic-bezier(.16,1,.3,1);position:relative}
+.price-card:hover{transform:translateY(-4px);box-shadow:var(--shadow-md)}
+.price-card.featured{background:#1d1d1f;color:#fff;border-color:transparent;box-shadow:var(--shadow-lg)}
+.price-card.featured:hover{transform:translateY(-8px);box-shadow:var(--shadow-xl)}
+.price-card.featured .pc-label,.price-card.featured .pc-tax{color:rgba(255,255,255,.4)}
+.price-card.featured .pc-name,.price-card.featured .pc-price{color:#fff}
+.price-card.featured .pc-desc{color:rgba(255,255,255,.45)}
+.price-card.featured .pc-feat li{color:rgba(255,255,255,.6)}
+.price-card.featured .pc-check{background:var(--blue)}
+.pc-badge{position:absolute;top:16px;right:16px;padding:4px 12px;border-radius:100px;font-size:.6rem;font-weight:700;letter-spacing:1px;color:#fff;background:var(--blue)}
+.pc-label{font-size:.65rem;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--text-tertiary);margin-bottom:8px}
+.pc-name{font-size:1.4rem;font-weight:800;letter-spacing:-.5px;margin-bottom:4px}
+.pc-desc{font-size:.75rem;color:var(--text-tertiary);line-height:1.5;margin-bottom:24px}
+.pc-price-row{display:flex;align-items:baseline;gap:2px;margin-bottom:2px}
+.pc-yen{font-size:.9rem;font-weight:700}
+.pc-price{font-size:2.8rem;font-weight:900;letter-spacing:-2px}
+.pc-tax{font-size:.65rem;color:var(--text-tertiary);margin-bottom:24px}
+.pc-feat{list-style:none;display:flex;flex-direction:column;gap:10px;margin-bottom:28px}
+.pc-feat li{font-size:.8rem;color:var(--text-secondary);display:flex;align-items:center;gap:8px}
+.pc-check{width:18px;height:18px;border-radius:50%;flex-shrink:0;background:var(--text-primary);color:#fff;display:flex;align-items:center;justify-content:center;font-size:.55rem;font-weight:900}
+.pc-btn{display:block;width:100%;padding:14px;border-radius:100px;font-size:.82rem;font-weight:600;text-align:center;cursor:pointer;transition:all .4s;border:1.5px solid var(--border);background:transparent;color:var(--text-primary);font-family:inherit}
+.pc-btn:hover{border-color:var(--text-primary)}
+.price-card.featured .pc-btn{background:var(--blue);color:#fff;border-color:transparent}
+.price-card.featured .pc-btn:hover{background:var(--blue-hover)}
+.price-note{text-align:center;margin-top:32px;font-size:.78rem;color:var(--text-tertiary);line-height:1.8}
+
+/* Flow */
+.flow-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-top:56px}
+.flow-card{padding:32px 20px;border-radius:var(--radius-lg);background:#fff;border:1px solid var(--border);text-align:center;transition:all .6s cubic-bezier(.16,1,.3,1);position:relative}
+.flow-card:hover{transform:translateY(-4px);box-shadow:var(--shadow-md)}
+.flow-num{font-size:2.5rem;font-weight:900;letter-spacing:-1px;color:rgba(0,113,227,.12);line-height:1;margin-bottom:12px}
+.flow-icon{width:44px;height:44px;border-radius:var(--radius-sm);margin:0 auto 14px;display:flex;align-items:center;justify-content:center;background:var(--bg-secondary)}
+.flow-icon svg{width:20px;height:20px;stroke-width:1.6;color:var(--blue)}
+.flow-name{font-size:.88rem;font-weight:700;margin-bottom:4px;letter-spacing:-.2px}
+.flow-text{font-size:.72rem;color:var(--text-tertiary);line-height:1.6}
+.flow-arrow{position:absolute;right:-12px;top:50%;transform:translateY(-50%);color:rgba(0,0,0,.1);font-size:.9rem;z-index:2}
+
+/* Showcase */
+.showcase{padding:120px 0;overflow:hidden;background:var(--bg-secondary)}
+.showcase-header{max-width:1024px;margin:0 auto;padding:0 24px 56px}
+.showcase-track{display:flex;gap:16px;animation:scroll 32s linear infinite;padding:0 24px}
+.sc-card{flex-shrink:0;width:280px;border-radius:var(--radius-lg);overflow:hidden;background:#fff;box-shadow:var(--shadow-sm);border:1px solid var(--border);transition:all .6s cubic-bezier(.16,1,.3,1)}
+.sc-card:hover{transform:translateY(-6px);box-shadow:var(--shadow-lg)}
+.sc-top{height:200px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px;position:relative;overflow:hidden}
+.sc-top.cafe{background:linear-gradient(160deg,#FEF3E2,#F5DEB3)}
+.sc-top.bar{background:linear-gradient(160deg,#F0EAF8,#D8CCE8)}
+.sc-top.salon{background:linear-gradient(160deg,#E8F5E9,#C8E6C9)}
+.sc-top.shop{background:linear-gradient(160deg,#E3F2FD,#BBDEFB)}
+.sc-top img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.sc-top-overlay{position:absolute;inset:0;background:linear-gradient(180deg,rgba(0,0,0,0) 30%,rgba(0,0,0,0.5) 100%);z-index:1}
+.sc-top .sc-icon,.sc-top .sc-name,.sc-top .sc-tag{position:relative;z-index:2}
+.sc-top.izakaya{background:linear-gradient(160deg,#FFF8E1,#FFECB3)}
+.sc-top.gym{background:linear-gradient(160deg,#EFEBE9,#D7CCC8)}
+.sc-icon{width:44px;height:44px;border-radius:50%;background:rgba(255,255,255,.2);backdrop-filter:blur(10px);display:flex;align-items:center;justify-content:center}
+.sc-icon svg{width:20px;height:20px;stroke-width:1.5;color:#fff}
+.sc-name{font-family:'Playfair Display',serif;font-size:1.1rem;font-weight:600;color:#fff;font-style:italic}
+.sc-tag{font-size:.55rem;letter-spacing:2px;text-transform:uppercase;color:rgba(255,255,255,.7);font-weight:600}
+.sc-body{padding:18px 20px}
+.sc-badge{display:inline-block;padding:3px 10px;border-radius:100px;font-size:.55rem;font-weight:700;letter-spacing:1px;color:var(--blue);background:rgba(0,113,227,.06);margin-bottom:6px}
+.sc-title{font-size:.88rem;font-weight:700;margin-bottom:2px;letter-spacing:-.2px}
+.sc-desc{font-size:.7rem;color:var(--text-tertiary)}
+
+/* FAQ */
+.faq-list{margin-top:48px;max-width:680px}
+.faq-item{border-bottom:.5px solid var(--border);overflow:hidden}
+.faq-q{display:flex;justify-content:space-between;align-items:center;padding:20px 0;cursor:pointer;font-size:.92rem;font-weight:600;letter-spacing:-.2px;transition:color .3s}
+.faq-q:hover{color:var(--blue)}
+.faq-chevron{width:24px;height:24px;display:flex;align-items:center;justify-content:center;transition:transform .4s cubic-bezier(.16,1,.3,1);flex-shrink:0}
+.faq-chevron svg{width:16px;height:16px;stroke-width:2;color:var(--text-tertiary)}
+.faq-item.open .faq-chevron{transform:rotate(180deg)}
+.faq-a{max-height:0;overflow:hidden;transition:max-height .5s cubic-bezier(.16,1,.3,1)}
+.faq-item.open .faq-a{max-height:200px}
+.faq-a p{font-size:.82rem;color:var(--text-secondary);line-height:1.8;padding-bottom:20px}
+
+/* Profile */
+.profile-grid{display:grid;grid-template-columns:280px 1fr;gap:56px;align-items:start}
+.profile-img{width:280px;height:280px;border-radius:var(--radius-xl);background:linear-gradient(160deg,#E3F2FD,#F0EAF8,#E8F5E9);display:flex;align-items:center;justify-content:center;box-shadow:var(--shadow-md);overflow:hidden;position:relative}
+.profile-img img{width:100%;height:100%;object-fit:cover}
+.profile-img-inner{width:140px;height:140px;border-radius:50%;background:rgba(255,255,255,.6);backdrop-filter:blur(10px);display:flex;align-items:center;justify-content:center;animation:floatY 4s ease-in-out infinite}
+.profile-img-inner svg{width:56px;height:56px;stroke-width:1.2;color:var(--blue)}
+.pf-name{font-size:2rem;font-weight:900;letter-spacing:-1px;margin-bottom:2px}
+.pf-name-sub{font-size:.75rem;color:var(--text-tertiary);margin-bottom:20px;font-weight:500}
+.pf-bio{font-size:.9rem;color:var(--text-secondary);line-height:2;margin-bottom:24px}
+.pf-bio strong{color:var(--text-primary);font-weight:700}
+.pf-ig{display:inline-flex;align-items:center;gap:8px;padding:12px 24px;border-radius:100px;background:var(--bg-secondary);border:1px solid var(--border);font-size:.8rem;font-weight:600;transition:all .4s}
+.pf-ig:hover{box-shadow:var(--shadow-sm);border-color:rgba(0,0,0,.12)}
+.pf-ig svg{width:16px;height:16px}
+.ig-feed{margin-top:28px}
+.ig-feed-label{font-size:.6rem;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--text-tertiary);margin-bottom:10px}
+.ig-feed-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
+.ig-feed-item{aspect-ratio:1;border-radius:var(--radius-md);overflow:hidden;background:var(--bg-secondary);border:1px solid var(--border);display:flex;align-items:center;justify-content:center;cursor:pointer;transition:all .5s cubic-bezier(.16,1,.3,1);position:relative}
+.ig-feed-item:hover{transform:scale(1.04);box-shadow:var(--shadow-md)}
+.ig-feed-item img{width:100%;height:100%;object-fit:cover}
+.ig-feed-item svg{width:20px;height:20px;stroke-width:1.5;color:var(--text-tertiary)}
+.ig-feed-overlay{position:absolute;inset:0;background:rgba(0,113,227,.85);display:flex;align-items:center;justify-content:center;opacity:0;transition:opacity .3s;border-radius:var(--radius-md)}
+.ig-feed-item:hover .ig-feed-overlay{opacity:1}
+.ig-feed-overlay svg{color:#fff}
+
+/* CTA */
+.cta-section{padding:140px 24px;text-align:center;background:linear-gradient(180deg,#f5f5f7 0%,#fff 100%)}
+.cta-inner{max-width:640px;margin:0 auto}
+.cta-icon{width:64px;height:64px;border-radius:50%;margin:0 auto 24px;background:var(--bg-secondary);border:1px solid var(--border);display:flex;align-items:center;justify-content:center}
+.cta-icon svg{width:28px;height:28px;stroke-width:1.5;color:var(--blue)}
+.cta-title{font-size:clamp(2rem,4.5vw,3.2rem);font-weight:800;letter-spacing:-1.5px;line-height:1.15;margin-bottom:16px}
+.cta-desc{font-size:.95rem;color:var(--text-secondary);line-height:1.8;margin-bottom:36px}
+
+/* Marquee */
+.marquee-wrap{padding:20px 0;overflow:hidden;background:var(--bg-secondary);border-top:.5px solid var(--border);border-bottom:.5px solid var(--border)}
+.marquee-track{display:flex;gap:36px;animation:scroll 20s linear infinite;white-space:nowrap}
+.m-item{flex-shrink:0;display:flex;align-items:center;gap:8px;font-size:.7rem;font-weight:600;letter-spacing:2px;text-transform:uppercase;color:var(--text-tertiary)}
+.m-dot{width:4px;height:4px;border-radius:50%;background:var(--blue);opacity:.3}
+
+/* Stats */
+.stats{padding:80px 24px;background:#fff}
+.stats-inner{max-width:1024px;margin:0 auto;display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
+.stat-item{text-align:center;padding:24px 16px}
+.stat-num{font-size:clamp(2.2rem,4vw,3rem);font-weight:900;letter-spacing:-2px;color:var(--blue);line-height:1;margin-bottom:4px}
+.stat-unit{font-size:.75rem;font-weight:700;color:var(--blue);opacity:.7}
+.stat-label{font-size:.72rem;color:var(--text-tertiary);margin-top:6px;font-weight:500}
+
+/* Options */
+.opt-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:48px}
+.opt-card{padding:24px 20px;border-radius:var(--radius-lg);background:var(--bg-secondary);border:1px solid var(--border);transition:all .6s cubic-bezier(.16,1,.3,1);display:flex;flex-direction:column}
+.opt-card:hover{transform:translateY(-3px);box-shadow:var(--shadow-sm);border-color:rgba(0,0,0,.1)}
+.opt-icon{width:36px;height:36px;border-radius:10px;display:flex;align-items:center;justify-content:center;margin-bottom:12px;background:#fff;box-shadow:var(--shadow-sm)}
+.opt-icon svg{width:18px;height:18px;stroke-width:1.6;color:var(--blue)}
+.opt-name{font-size:.88rem;font-weight:700;letter-spacing:-.2px;margin-bottom:4px}
+.opt-desc{font-size:.72rem;color:var(--text-tertiary);line-height:1.6;margin-bottom:12px;flex:1}
+.opt-price{font-size:.95rem;font-weight:800;color:var(--text-primary);letter-spacing:-.3px}
+.opt-price span{font-size:.65rem;font-weight:500;color:var(--text-tertiary)}
+.opt-note{text-align:center;margin-top:28px;font-size:.75rem;color:var(--text-tertiary);line-height:1.8}
+
+/* Testimonials */
+.testi-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:56px}
+.testi-card{padding:32px 24px;border-radius:var(--radius-lg);background:#fff;border:1px solid var(--border);transition:all .6s cubic-bezier(.16,1,.3,1)}
+.testi-card:hover{transform:translateY(-4px);box-shadow:var(--shadow-md)}
+.testi-stars{display:flex;gap:2px;margin-bottom:14px}
+.testi-star{width:14px;height:14px;color:#FF9500}
+.testi-text{font-size:.82rem;color:var(--text-secondary);line-height:1.9;margin-bottom:18px}
+.testi-author{display:flex;align-items:center;gap:10px}
+.testi-avatar{width:36px;height:36px;border-radius:50%;background:var(--bg-secondary);display:flex;align-items:center;justify-content:center;overflow:hidden}
+.testi-avatar img{width:100%;height:100%;object-fit:cover}
+.testi-avatar svg{width:18px;height:18px;stroke-width:1.5;color:var(--text-tertiary)}
+.testi-info{display:flex;flex-direction:column}
+.testi-name{font-size:.78rem;font-weight:700;letter-spacing:-.1px}
+.testi-role{font-size:.62rem;color:var(--text-tertiary)}
+
+/* Monitor Carousel */
+.monitor-section{margin-top:80px}
+.monitor-carousel{display:flex;gap:16px;overflow-x:auto;padding:16px 0 24px;scroll-snap-type:x mandatory;-webkit-overflow-scrolling:touch;scrollbar-width:none}
+.monitor-carousel::-webkit-scrollbar{display:none}
+.monitor-card{flex-shrink:0;width:240px;border-radius:var(--radius-lg);overflow:hidden;border:1px solid var(--border);scroll-snap-align:start;transition:all .6s cubic-bezier(.16,1,.3,1);background:#fff}
+.monitor-card:hover{transform:translateY(-4px);box-shadow:var(--shadow-md)}
+.monitor-card.recruiting{border:1.5px dashed var(--blue);background:rgba(0,113,227,.02)}
+.mc-top{height:150px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px;position:relative;overflow:hidden;background:var(--bg-secondary)}
+.mc-top img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.mc-top-overlay{position:absolute;inset:0;background:linear-gradient(180deg,rgba(0,0,0,0) 30%,rgba(0,0,0,0.4) 100%);z-index:1}
+.mc-status{position:absolute;top:10px;right:10px;padding:3px 10px;border-radius:100px;font-size:.55rem;font-weight:700;letter-spacing:.5px;z-index:2}
+.mc-status.live{background:#34C759;color:#fff}
+.mc-status.open{background:var(--blue);color:#fff;animation:statusPulse 2s ease-in-out infinite}
+.mc-status.building{background:#FF9500;color:#fff}
+.mc-body{padding:16px}
+.mc-name{font-size:.85rem;font-weight:700;margin-bottom:2px;letter-spacing:-.2px}
+.mc-desc{font-size:.68rem;color:var(--text-tertiary);line-height:1.6;margin-bottom:10px}
+.mc-link{font-size:.7rem;font-weight:600;color:var(--blue);display:inline-flex;align-items:center;gap:4px}
+.mc-link:hover{text-decoration:underline}
+.mc-recruit-inner{display:flex;flex-direction:column;align-items:center;justify-content:center;height:100%;gap:8px;padding:24px}
+.mc-recruit-icon{width:48px;height:48px;border-radius:50%;background:rgba(0,113,227,.08);display:flex;align-items:center;justify-content:center}
+.mc-recruit-icon svg{width:22px;height:22px;color:var(--blue);stroke-width:1.5}
+.mc-recruit-text{font-size:.72rem;color:var(--blue);font-weight:600;text-align:center}
+@keyframes statusPulse{0%,100%{opacity:1}50%{opacity:.7}}
+
+/* Footer */
+footer{padding:32px 24px;text-align:center;font-size:.65rem;color:var(--text-tertiary);border-top:.5px solid var(--border);letter-spacing:.3px;line-height:1.8}
+footer a{color:var(--blue)}
+
+/* Keyframes */
+@keyframes fadeUp{to{opacity:1;transform:translateY(0)}}
+@keyframes scroll{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
+@keyframes arrowDown{0%,100%{transform:translateY(0);opacity:.3}50%{transform:translateY(6px);opacity:.7}}
+@keyframes floatY{0%,100%{transform:translateY(0)}50%{transform:translateY(-10px)}}
+@keyframes aiShimmer{0%{background-position:0% 50%}50%{background-position:100% 50%}100%{background-position:0% 50%}}
+@keyframes aiPulse{0%,100%{opacity:.3;transform:translate(-50%,-50%) scale(1)}50%{opacity:.6;transform:translate(-50%,-50%) scale(1.15)}}
+
+/* Responsive */
+@media(max-width:1024px){
+  .concept-grid{grid-template-columns:1fr;gap:40px}
+  .price-grid{grid-template-columns:1fr;max-width:420px;margin-left:auto;margin-right:auto}
+  .feat-grid{grid-template-columns:1fr 1fr}
+  .flow-grid{grid-template-columns:1fr 1fr}.flow-arrow{display:none}
+  .profile-grid{grid-template-columns:1fr;justify-items:center;text-align:center}
+  .stats-inner{grid-template-columns:repeat(2,1fr)}
+  .opt-grid{grid-template-columns:1fr 1fr}
+  .testi-grid{grid-template-columns:1fr}
+}
+@media(max-width:768px){
+  .nav-links{display:none}
+  .section-white,.section-gray{padding:80px 20px}
+  .feat-grid{grid-template-columns:1fr}
+  .hero-cards{gap:8px}.hero-card{width:140px;height:200px}
+  .profile-img{width:200px;height:200px}
+  .cta-section,.showcase{padding:80px 0}
+  .stats-inner{grid-template-columns:repeat(2,1fr);gap:8px}
+  .stats{padding:60px 20px}
+  .opt-grid{grid-template-columns:1fr}
+}
+</style>
+</head>
+<body>
+
+<div class="scroll-progress" id="scrollProgress"></div>
+
+<nav class="nav"><div class="nav-inner">
+  <div class="nav-logo ai-glow"><span class="ai-badge">AI</span>KAZUTO</div>
+  <div class="nav-links">
+    <a href="#concept">Concept</a><a href="#features">Features</a>
+    <a href="#pricing">Pricing</a><a href="#flow">Flow</a><a href="#voice">Voice</a><a href="#profile">Profile</a>
+  </div>
+  <a href="#cta"><button class="nav-cta">お問い合わせ</button></a>
+</div></nav>
+
+<!-- Hero -->
+<section class="hero">
+  <p class="hero-eyebrow">AI KAZUTO — Closed Plan / 毎月5名限定</p>
+  <h1 class="hero-title">ホームページ、<br>あったらいいな。</h1>
+  <p class="hero-sub">その「ちょっと欲しい」、叶えます。</p>
+  <p class="hero-desc">写真やSNS、お店の雰囲気から<br>AIがあなただけのサイトを仕上げます。<br>買い切り29,800円。月額費用ゼロ。</p>
+  <div class="hero-cta">
+    <a href="#cta" class="btn-apple primary">無料相談する</a>
+    <a href="#pricing" class="btn-apple secondary">料金を見る <span class="arrow">→</span></a>
+  </div>
+  <div class="hero-cards">
+    <div class="hero-card"><div class="hc-inner cafe">
+      <img class="hc-img" src="https://images.unsplash.com/photo-1554118811-1e0d58224f24?w=400&h=560&fit=crop&q=80" alt="Cafe">
+      <div class="hc-overlay"></div>
+      <div class="hc-content"><div class="hc-icon"><i data-lucide="coffee"></i></div><span class="hc-label">Cafe</span><span class="hc-name">Café Lumière</span></div>
+    </div></div>
+    <div class="hero-card"><div class="hc-inner bar">
+      <img class="hc-img" src="https://images.unsplash.com/photo-1470337458703-46ad1756a187?w=400&h=560&fit=crop&q=80" alt="Bar">
+      <div class="hc-overlay"></div>
+      <div class="hc-content"><div class="hc-icon"><i data-lucide="wine"></i></div><span class="hc-label">Bar</span><span class="hc-name">Bar Velvet</span></div>
+    </div></div>
+    <div class="hero-card"><div class="hc-inner salon">
+      <img class="hc-img" src="https://images.unsplash.com/photo-1560066984-138dadb4c035?w=400&h=560&fit=crop&q=80" alt="Salon">
+      <div class="hc-overlay"></div>
+      <div class="hc-content"><div class="hc-icon"><i data-lucide="scissors"></i></div><span class="hc-label">Salon</span><span class="hc-name">Salon Bloom</span></div>
+    </div></div>
+  </div>
+</section>
+
+<!-- Marquee -->
+<div class="marquee-wrap"><div class="marquee-track">
+  <span class="m-item"><span class="m-dot"></span>CAFE</span><span class="m-item"><span class="m-dot"></span>BAR</span><span class="m-item"><span class="m-dot"></span>RESTAURANT</span><span class="m-item"><span class="m-dot"></span>SALON</span><span class="m-item"><span class="m-dot"></span>PERSONAL</span><span class="m-item"><span class="m-dot"></span>IZAKAYA</span><span class="m-item"><span class="m-dot"></span>CREATOR</span><span class="m-item"><span class="m-dot"></span>SHOP</span><span class="m-item"><span class="m-dot"></span>GYM</span><span class="m-item"><span class="m-dot"></span>PHOTOGRAPHER</span>
+  <span class="m-item"><span class="m-dot"></span>CAFE</span><span class="m-item"><span class="m-dot"></span>BAR</span><span class="m-item"><span class="m-dot"></span>RESTAURANT</span><span class="m-item"><span class="m-dot"></span>SALON</span><span class="m-item"><span class="m-dot"></span>PERSONAL</span><span class="m-item"><span class="m-dot"></span>IZAKAYA</span><span class="m-item"><span class="m-dot"></span>CREATOR</span><span class="m-item"><span class="m-dot"></span>SHOP</span><span class="m-item"><span class="m-dot"></span>GYM</span><span class="m-item"><span class="m-dot"></span>PHOTOGRAPHER</span>
+</div></div>
+
+<!-- Stats -->
+<section class="stats"><div class="stats-inner">
+  <div class="stat-item reveal"><div class="stat-num" id="statPrice">29,800</div><div class="stat-unit">円〜</div><div class="stat-label">買い切り価格</div></div>
+  <div class="stat-item reveal rd1"><div class="stat-num">0</div><div class="stat-unit">円</div><div class="stat-label">月額ランニング費用</div></div>
+  <div class="stat-item reveal rd2"><div class="stat-num">7</div><div class="stat-unit">日</div><div class="stat-label">最短納品日数</div></div>
+  <div class="stat-item reveal rd3"><div class="stat-num">1</div><div class="stat-unit">ページ</div><div class="stat-label">アンケート回答のみ</div></div>
+</div></section>
+
+<!-- Concept -->
+<section class="section-white" id="concept"><div class="section-inner"><div class="concept-grid">
+  <div class="concept-visual reveal">
+    <div style="display:flex;flex-direction:column;gap:10px;width:100%">
+      <div class="cv-ig">
+        <div class="cv-ig-icon"><svg viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069z" fill="#fff"/></svg></div>
+        <span>Instagram</span>
+      </div>
+      <div class="cv-ig" style="align-self:flex-end">
+        <div class="cv-ig-icon" style="background:linear-gradient(135deg,#4285F4,#34A853)"><svg viewBox="0 0 24 24" width="18" height="18" fill="#fff"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg></div>
+        <span>Google MAP</span>
+      </div>
+      <div class="cv-ig">
+        <div class="cv-ig-icon" style="background:linear-gradient(135deg,#6366F1,#8B5CF6)"><i data-lucide="camera" style="width:18px;height:18px;color:#fff"></i></div>
+        <span>あなたの写真</span>
+      </div>
+      <div class="cv-ig" style="align-self:flex-end">
+        <div class="cv-ig-icon" style="background:linear-gradient(135deg,#F59E0B,#EF4444)"><i data-lucide="users" style="width:18px;height:18px;color:#fff"></i></div>
+        <span>友人が撮った写真</span>
+      </div>
+    </div>
+    <div class="cv-arrow"><i data-lucide="arrow-down"></i></div>
+    <div class="cv-phone"><div class="cv-ph-bar"></div><div class="cv-ph-img"></div><div class="cv-ph-line"></div><div class="cv-ph-line short"></div><div class="cv-ph-line"></div><div class="cv-ph-img" style="height:40px"></div><div class="cv-ph-line short"></div></div>
+  </div>
+  <div>
+    <p class="sec-eyebrow reveal">Concept</p>
+    <h2 class="sec-headline reveal rd1">あなたの素材から、<br>世界観をつくる。</h2>
+    <p class="sec-desc reveal rd2">Instagram、Google MAP、あなたが撮った写真、友人が撮ってくれた写真——どんな素材からでも、AIがあなたらしい世界観をサイトに表現します。</p>
+    <p class="sec-desc reveal rd3" style="margin-top:16px">「お金がかかるから」「難しそうだから」——そう思って諦めていた方へ。簡単なアンケートに答えるだけで、約1週間で納品します。</p>
+  </div>
+</div></div></section>
+
+<!-- Features -->
+<section class="section-gray" id="features"><div class="section-inner">
+  <p class="sec-eyebrow reveal">Features</p>
+  <h2 class="sec-headline reveal rd1">選ばれる、6つの理由。</h2>
+  <div class="feat-grid">
+    <div class="feat-card reveal rd1"><div class="feat-icon fi-blue"><i data-lucide="camera"></i></div><div class="feat-title">あなたの素材からデザイン</div><div class="feat-text">SNS・写真・MAPなど、あなたの持つ素材からAIが世界観を分析。統一感のあるサイトを設計します。</div></div>
+    <div class="feat-card reveal rd2"><div class="feat-icon fi-green"><i data-lucide="dollar-sign"></i></div><div class="feat-title">買い切り・追加費用ゼロ</div><div class="feat-text">月額費用、サーバー代、更新費用は一切なし。一度のお支払いだけでずっと使えます。</div></div>
+    <div class="feat-card reveal rd3"><div class="feat-icon fi-orange"><i data-lucide="zap"></i></div><div class="feat-title">最短1週間で納品</div><div class="feat-text">アンケート回答から約1週間でサイト完成。スピード感を大切にしています。</div></div>
+    <div class="feat-card reveal rd4"><div class="feat-icon fi-teal"><i data-lucide="smartphone"></i></div><div class="feat-title">スマホ完全対応</div><div class="feat-text">PC・タブレット・スマホすべてで美しく表示。どこから見ても完璧です。</div></div>
+    <div class="feat-card reveal rd5"><div class="feat-icon fi-red"><i data-lucide="map-pin"></i></div><div class="feat-title">Google MAP連携</div><div class="feat-text">店舗のある方はMAPを埋め込み、アクセス情報もスマートに表示します。</div></div>
+    <div class="feat-card reveal rd6"><div class="feat-icon fi-purple"><i data-lucide="smile"></i></div><div class="feat-title">オリジナルキャラクター</div><div class="feat-text">オーナー様を2〜3頭身のかわいいキャラに。親しみやすさとブランド感を両立。</div></div>
+  </div>
+</div></section>
+
+<!-- Pricing -->
+<section class="section-white" id="pricing"><div class="section-inner">
+  <p class="sec-eyebrow reveal">Pricing</p>
+  <h2 class="sec-headline reveal rd1">シンプルで、わかりやすい料金。</h2>
+  <p class="sec-desc reveal rd2">ランニング費用は一切なし。すべて買い切りです。</p>
+  <div class="price-grid">
+    <div class="price-card reveal rd1">
+      <div class="pc-label">Limited</div><div class="pc-name">Monitor Plan</div>
+      <div class="pc-desc">モニターとして当サイトに<br>掲載させていただく特別プラン</div>
+      <div class="pc-price-row"><span class="pc-yen">¥</span><span class="pc-price">19,800</span></div>
+      <div class="pc-tax">税抜 / 買い切り</div>
+      <ul class="pc-feat"><li><span class="pc-check">✓</span>オリジナルデザイン制作</li><li><span class="pc-check">✓</span>素材からデザイン制作</li><li><span class="pc-check">✓</span>スマホ対応</li><li><span class="pc-check">✓</span>オリジナルキャラクター</li><li><span class="pc-check">✓</span>実績ページに掲載</li></ul>
+      <a href="#cta" class="pc-btn">モニターに応募する</a>
+    </div>
+    <div class="price-card featured reveal rd2">
+      <div class="pc-badge">おすすめ</div>
+      <div class="pc-label">Standard</div><div class="pc-name">Basic Plan</div>
+      <div class="pc-desc">あなたの素材から<br>オリジナルサイト制作</div>
+      <div class="pc-price-row"><span class="pc-yen">¥</span><span class="pc-price">29,800</span></div>
+      <div class="pc-tax">税抜 / 買い切り</div>
+      <ul class="pc-feat"><li><span class="pc-check">✓</span>オリジナルデザイン制作</li><li><span class="pc-check">✓</span>素材からデザイン制作</li><li><span class="pc-check">✓</span>スマホ対応</li><li><span class="pc-check">✓</span>オリジナルキャラクター</li><li><span class="pc-check">✓</span>基本コンテンツ設計</li><li><span class="pc-check">✓</span>SEO基本設定</li></ul>
+      <a href="#cta" class="pc-btn">お申し込みはこちら</a>
+    </div>
+    <div class="price-card reveal rd3">
+      <div class="pc-label">Shop Owner</div><div class="pc-name">MAP+ Plan</div>
+      <div class="pc-desc">Basic Plan +<br>Google MAP埋め込み対応</div>
+      <div class="pc-price-row"><span class="pc-yen">¥</span><span class="pc-price">39,800</span></div>
+      <div class="pc-tax">税抜 / 買い切り</div>
+      <ul class="pc-feat"><li><span class="pc-check">✓</span>Basic Planの全機能</li><li><span class="pc-check">✓</span>Google MAP埋め込み</li><li><span class="pc-check">✓</span>店舗アクセス情報設計</li><li><span class="pc-check">✓</span>営業時間・定休日表示</li><li><span class="pc-check">✓</span>電話タップ発信対応</li><li><span class="pc-check">✓</span>予約導線の設計</li></ul>
+      <a href="#cta" class="pc-btn">お申し込みはこちら</a>
+    </div>
+  </div>
+  <p class="price-note reveal">※ KAZUTOの繋がり限定・紹介制のクローズドプランです<br>※ ご紹介のみでの受付となります</p>
+
+  <!-- Options -->
+  <div style="margin-top:80px">
+    <p class="sec-eyebrow reveal">Options</p>
+    <h2 class="sec-headline reveal rd1" style="font-size:clamp(1.8rem,4vw,2.5rem)">もっと充実させたい方へ。</h2>
+    <p class="sec-desc reveal rd2">基本プランに追加できるオプションメニューです。</p>
+    <div class="opt-grid">
+      <div class="opt-card reveal rd1"><div class="opt-icon"><i data-lucide="globe"></i></div><div class="opt-name">独自ドメイン取得・設定</div><div class="opt-desc">「yourshop.com」など、あなただけのURLを取得して設定します。ドメイン取得費用込み。</div><div class="opt-price">+5,000円 <span>/ 買い切り</span></div></div>
+      <div class="opt-card reveal rd2"><div class="opt-icon"><i data-lucide="file-plus"></i></div><div class="opt-name">ページ追加</div><div class="opt-desc">メニュー詳細ページ、ギャラリーページなど、1ページ単位で追加できます。</div><div class="opt-price">+5,000円 <span>/ 1ページ</span></div></div>
+      <div class="opt-card reveal rd3"><div class="opt-icon"><i data-lucide="pen-tool"></i></div><div class="opt-name">ロゴデザイン制作</div><div class="opt-desc">お店・サービスのオリジナルロゴをデザイン。サイトだけでなく名刺やSNSにも使えます。</div><div class="opt-price">+8,000円 <span>/ 買い切り</span></div></div>
+      <div class="opt-card reveal rd4"><div class="opt-icon"><i data-lucide="mail"></i></div><div class="opt-name">お問い合わせフォーム</div><div class="opt-desc">お客様からの問い合わせをメールで受け取れるフォームを設置します。</div><div class="opt-price">+5,000円 <span>/ 買い切り</span></div></div>
+      <div class="opt-card reveal rd5"><div class="opt-icon"><i data-lucide="share-2"></i></div><div class="opt-name">SNSリンク・バナー設置</div><div class="opt-desc">LINE公式・Twitter・Facebook・TikTokなど、各種SNSへの導線をスマートに設置。</div><div class="opt-price">+3,000円 <span>/ 買い切り</span></div></div>
+      <div class="opt-card reveal rd6"><div class="opt-icon"><i data-lucide="trending-up"></i></div><div class="opt-name">アクセス解析設置</div><div class="opt-desc">Google Analyticsを設置。どれくらい見られているか、数字で確認できるようになります。</div><div class="opt-price">+3,000円 <span>/ 買い切り</span></div></div>
+      <div class="opt-card reveal"><div class="opt-icon"><i data-lucide="image"></i></div><div class="opt-name">OGP設定</div><div class="opt-desc">LINEやTwitterでURLをシェアしたとき、画像とタイトルが美しく表示されるように設定。</div><div class="opt-price">+3,000円 <span>/ 買い切り</span></div></div>
+      <div class="opt-card reveal"><div class="opt-icon"><i data-lucide="type"></i></div><div class="opt-name">多言語対応（英語）</div><div class="opt-desc">英語版ページを追加。インバウンド対応や海外のお客様向けに。</div><div class="opt-price">+10,000円 <span>/ 買い切り</span></div></div>
+      <div class="opt-card reveal"><div class="opt-icon"><i data-lucide="wrench"></i></div><div class="opt-name">納品後の追加修正</div><div class="opt-desc">納品後に「やっぱりここを変えたい」という場合の修正対応。テキスト・写真差し替え等。</div><div class="opt-price">+3,000円 <span>/ 1回</span></div></div>
+    </div>
+    <p class="opt-note reveal">※ オプションは基本プランと同時、または納品後いつでもご依頼いただけます<br>※ 複数オプション同時注文で割引あり（お気軽にご相談ください）</p>
+  </div>
+</div></section>
+
+<!-- Flow -->
+<section class="section-gray" id="flow"><div class="section-inner">
+  <p class="sec-eyebrow reveal">Flow</p>
+  <h2 class="sec-headline reveal rd1">かんたん4ステップ。</h2>
+  <p class="sec-desc reveal rd2">あなたがやることは、アンケートに答えるだけ。</p>
+  <div class="flow-grid">
+    <div class="flow-card reveal rd1"><div class="flow-num">01</div><div class="flow-icon"><i data-lucide="file-text"></i></div><div class="flow-name">アンケート記入</div><div class="flow-text">Googleフォームでサイト名・コンセプト・カラー・Instagram等を入力</div><span class="flow-arrow">→</span></div>
+    <div class="flow-card reveal rd2"><div class="flow-num">02</div><div class="flow-icon"><i data-lucide="pen-tool"></i></div><div class="flow-name">デザイン制作</div><div class="flow-text">Instagramの世界観を読み込み、あなただけのサイトを制作</div><span class="flow-arrow">→</span></div>
+    <div class="flow-card reveal rd3"><div class="flow-num">03</div><div class="flow-icon"><i data-lucide="message-circle"></i></div><div class="flow-name">確認・修正</div><div class="flow-text">デザイン案をご確認。ご要望に応じて調整します</div><span class="flow-arrow">→</span></div>
+    <div class="flow-card reveal rd4"><div class="flow-num">04</div><div class="flow-icon"><i data-lucide="globe"></i></div><div class="flow-name">納品・公開</div><div class="flow-text">最終確認後、サイトを納品。すぐに公開いただけます</div></div>
+  </div>
+</div></section>
+
+<!-- Showcase -->
+<section class="showcase"><div class="showcase-header">
+  <p class="sec-eyebrow reveal">Showcase</p>
+  <h2 class="sec-headline reveal rd1">こんなサイトが作れます。</h2>
+</div>
+<div class="showcase-track">
+  <div class="sc-card"><div class="sc-top cafe">
+    <img src="https://images.unsplash.com/photo-1509042239860-f550ce710b93?w=560&h=400&fit=crop&q=80" alt="Cafe">
+    <div class="sc-top-overlay"></div>
+    <div class="sc-icon"><i data-lucide="coffee"></i></div><span class="sc-name">Café Lumière</span><span class="sc-tag">Light & Coffee</span></div><div class="sc-body"><span class="sc-badge">CAFE</span><div class="sc-title">個人カフェ</div><div class="sc-desc">温かみのある空間をそのままウェブに</div></div></div>
+  <div class="sc-card"><div class="sc-top bar">
+    <img src="https://images.unsplash.com/photo-1470337458703-46ad1756a187?w=560&h=400&fit=crop&q=80" alt="Bar">
+    <div class="sc-top-overlay"></div>
+    <div class="sc-icon"><i data-lucide="wine"></i></div><span class="sc-name">BAR VELVET</span><span class="sc-tag">A Night to Remember</span></div><div class="sc-body"><span class="sc-badge">BAR</span><div class="sc-title">バー・ラウンジ</div><div class="sc-desc">大人の雰囲気を演出するトーン</div></div></div>
+  <div class="sc-card"><div class="sc-top salon">
+    <img src="https://images.unsplash.com/photo-1560066984-138dadb4c035?w=560&h=400&fit=crop&q=80" alt="Salon">
+    <div class="sc-top-overlay"></div>
+    <div class="sc-icon"><i data-lucide="scissors"></i></div><span class="sc-name">Salon Bloom</span><span class="sc-tag">Be Beautiful</span></div><div class="sc-body"><span class="sc-badge">SALON</span><div class="sc-title">ヘアサロン</div><div class="sc-desc">ナチュラルで洗練されたデザイン</div></div></div>
+  <div class="sc-card"><div class="sc-top shop">
+    <img src="https://images.unsplash.com/photo-1441986300917-64674bd600d8?w=560&h=400&fit=crop&q=80" alt="Shop">
+    <div class="sc-top-overlay"></div>
+    <div class="sc-icon"><i data-lucide="shopping-bag"></i></div><span class="sc-name">SELECT Mano</span><span class="sc-tag">Curated for You</span></div><div class="sc-body"><span class="sc-badge">SHOP</span><div class="sc-title">セレクトショップ</div><div class="sc-desc">商品の魅力が伝わるデザイン</div></div></div>
+  <div class="sc-card"><div class="sc-top izakaya">
+    <img src="https://images.unsplash.com/photo-1553621042-f6e147245754?w=560&h=400&fit=crop&q=80" alt="Izakaya">
+    <div class="sc-top-overlay"></div>
+    <div class="sc-icon"><i data-lucide="flame"></i></div><span class="sc-name">炭火焼 和楽</span><span class="sc-tag">Charcoal & Sake</span></div><div class="sc-body"><span class="sc-badge">IZAKAYA</span><div class="sc-title">居酒屋・和食</div><div class="sc-desc">和の趣を感じる上質なデザイン</div></div></div>
+  <div class="sc-card"><div class="sc-top cafe">
+    <img src="https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?w=560&h=400&fit=crop&q=80" alt="Cafe">
+    <div class="sc-top-overlay"></div>
+    <div class="sc-icon"><i data-lucide="coffee"></i></div><span class="sc-name">珈琲堂 和み</span><span class="sc-tag">Peace & Coffee</span></div><div class="sc-body"><span class="sc-badge">CAFE</span><div class="sc-title">喫茶店</div><div class="sc-desc">レトロな雰囲気もウェブで再現</div></div></div>
+  <div class="sc-card"><div class="sc-top bar">
+    <img src="https://images.unsplash.com/photo-1514933651103-005eec06c04b?w=560&h=400&fit=crop&q=80" alt="Restaurant">
+    <div class="sc-top-overlay"></div>
+    <div class="sc-icon"><i data-lucide="utensils"></i></div><span class="sc-name">Trattoria Bella</span><span class="sc-tag">Italian Dining</span></div><div class="sc-body"><span class="sc-badge">RESTAURANT</span><div class="sc-title">レストラン</div><div class="sc-desc">料理の魅力を最大限に引き出す</div></div></div>
+  <div class="sc-card"><div class="sc-top salon">
+    <img src="https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?w=560&h=400&fit=crop&q=80" alt="Nail Salon">
+    <div class="sc-top-overlay"></div>
+    <div class="sc-icon"><i data-lucide="sparkles"></i></div><span class="sc-name">Nail Atelier</span><span class="sc-tag">Art on Tips</span></div><div class="sc-body"><span class="sc-badge">NAIL</span><div class="sc-title">ネイルサロン</div><div class="sc-desc">繊細なアートをウェブでも表現</div></div></div>
+  <div class="sc-card"><div class="sc-top shop">
+    <img src="https://images.unsplash.com/photo-1556906781-9a412961c28c?w=560&h=400&fit=crop&q=80" alt="Gym">
+    <div class="sc-top-overlay"></div>
+    <div class="sc-icon"><i data-lucide="activity"></i></div><span class="sc-name">FIT BASE</span><span class="sc-tag">Your Strength</span></div><div class="sc-body"><span class="sc-badge">GYM</span><div class="sc-title">パーソナルジム</div><div class="sc-desc">トレーナーの信頼感を伝える</div></div></div>
+  <div class="sc-card"><div class="sc-top izakaya">
+    <img src="https://images.unsplash.com/photo-1553621042-f6e147245754?w=560&h=400&fit=crop&q=80" alt="Izakaya">
+    <div class="sc-top-overlay"></div>
+    <div class="sc-icon"><i data-lucide="flame"></i></div><span class="sc-name">炭火焼 和楽</span><span class="sc-tag">Charcoal & Sake</span></div><div class="sc-body"><span class="sc-badge">IZAKAYA</span><div class="sc-title">居酒屋・和食</div><div class="sc-desc">和の趣を感じる上質なデザイン</div></div></div>
+</div></section>
+
+<!-- Testimonials -->
+<section class="section-white" id="voice"><div class="section-inner">
+  <p class="sec-eyebrow reveal">Voice</p>
+  <h2 class="sec-headline reveal rd1">仲間たちの声。</h2>
+  <p class="sec-desc reveal rd2">KAZUTOの繋がりから生まれたサイトたち。</p>
+  <div class="testi-grid">
+    <div class="testi-card reveal rd1">
+      <div class="testi-stars"><svg class="testi-star" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg><svg class="testi-star" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg><svg class="testi-star" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg><svg class="testi-star" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg><svg class="testi-star" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg></div>
+      <div class="testi-text">ゴルフ仲間のKAZUTOに「ホームページ作れるよ」って言われて半信半疑だったけど、出来上がりを見てマジでびっくり。しかもこの値段で月額ゼロって笑。もう周りにも紹介してるよ！</div>
+      <div class="testi-author"><div class="testi-avatar"><img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=72&h=72&fit=crop&q=80" alt=""></div><div class="testi-info"><span class="testi-name">T.K</span><span class="testi-role">飲食店オーナー / ゴルフ仲間</span></div></div>
+    </div>
+    <div class="testi-card reveal rd2">
+      <div class="testi-stars"><svg class="testi-star" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg><svg class="testi-star" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg><svg class="testi-star" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg><svg class="testi-star" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg><svg class="testi-star" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg></div>
+      <div class="testi-text">長い付き合いのKAZUTOに老人ホームの検索サイトを作ってもらいました。こちらの細かい要望にも全部対応してくれて、しかも爆速。頼んでよかった！</div>
+      <div class="testi-author"><div class="testi-avatar"><img src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=72&h=72&fit=crop&q=80" alt=""></div><div class="testi-info"><span class="testi-name">S.M</span><span class="testi-role">老人ホームガイド運営 / 長年の仲間</span></div></div>
+    </div>
+    <div class="testi-card reveal rd3">
+      <div class="testi-stars"><svg class="testi-star" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg><svg class="testi-star" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg><svg class="testi-star" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg><svg class="testi-star" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg><svg class="testi-star" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg></div>
+      <div class="testi-text">友達の紹介で頼んだんだけど、パソコン苦手な私でもアンケートだけで完成。しかも4日で届いた（笑）。お店のお客さんにも「おしゃれ！」って褒められてます。</div>
+      <div class="testi-author"><div class="testi-avatar"><img src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?w=72&h=72&fit=crop&q=80" alt=""></div><div class="testi-info"><span class="testi-name">M.H</span><span class="testi-role">サロンオーナー / 友人からの紹介</span></div></div>
+    </div>
+  </div>
+
+  <!-- Monitor Sites -->
+  <div class="monitor-section">
+    <p class="sec-eyebrow reveal">Works & Recruiting</p>
+    <h2 class="sec-headline reveal rd1" style="font-size:clamp(1.8rem,4vw,2.5rem)">モニターサイト一覧</h2>
+    <p class="sec-desc reveal rd2">制作実績と、現在募集中の枠です。</p>
+    <div class="monitor-carousel">
+      <!-- 1: 老人ホームガイド（納品済み） -->
+      <div class="monitor-card reveal rd1">
+        <div class="mc-top">
+          <img src="https://images.unsplash.com/photo-1576765608535-5f04d1e3f289?w=480&h=300&fit=crop&q=80" alt="老人ホームガイド">
+          <div class="mc-top-overlay"></div>
+          <span class="mc-status live">公開中</span>
+        </div>
+        <div class="mc-body">
+          <div class="mc-name">老人ホームガイド</div>
+          <div class="mc-desc">高齢者施設の検索・比較サイト。長年の仲間からの依頼で制作。</div>
+          <a href="https://2nd-lifesearch.pages.dev" target="_blank" rel="noopener" class="mc-link">サイトを見る →</a>
+        </div>
+      </div>
+      <!-- 2: これから制作 -->
+      <div class="monitor-card reveal rd2">
+        <div class="mc-top" style="background:linear-gradient(160deg,#FFF3E0,#FFE0B2)">
+          <span class="mc-status building">制作中</span>
+          <div style="position:relative;z-index:2;text-align:center">
+            <i data-lucide="hammer" style="width:32px;height:32px;color:rgba(0,0,0,.2);stroke-width:1.5"></i>
+          </div>
+        </div>
+        <div class="mc-body">
+          <div class="mc-name">Coming Soon...</div>
+          <div class="mc-desc">新規のモニターサイトを制作中です。完成をお楽しみに！</div>
+        </div>
+      </div>
+      <!-- 3: 募集中 -->
+      <div class="monitor-card recruiting reveal rd3">
+        <div class="mc-recruit-inner">
+          <div class="mc-recruit-icon"><i data-lucide="plus"></i></div>
+          <div class="mc-recruit-text">モニター募集中</div>
+          <div style="font-size:.62rem;color:var(--text-tertiary);text-align:center">19,800円（税抜）で制作<br>当サイトに掲載させていただきます</div>
+        </div>
+        <div class="mc-body" style="padding-top:0;text-align:center">
+          <a href="#cta" class="mc-link">応募する →</a>
+        </div>
+      </div>
+      <!-- 4: 募集中 -->
+      <div class="monitor-card recruiting reveal rd4">
+        <div class="mc-recruit-inner">
+          <div class="mc-recruit-icon"><i data-lucide="plus"></i></div>
+          <div class="mc-recruit-text">モニター募集中</div>
+          <div style="font-size:.62rem;color:var(--text-tertiary);text-align:center">19,800円（税抜）で制作<br>当サイトに掲載させていただきます</div>
+        </div>
+        <div class="mc-body" style="padding-top:0;text-align:center">
+          <a href="#cta" class="mc-link">応募する →</a>
+        </div>
+      </div>
+      <!-- 5: 募集中 -->
+      <div class="monitor-card recruiting reveal rd5">
+        <div class="mc-recruit-inner">
+          <div class="mc-recruit-icon"><i data-lucide="plus"></i></div>
+          <div class="mc-recruit-text">モニター募集中</div>
+          <div style="font-size:.62rem;color:var(--text-tertiary);text-align:center">19,800円（税抜）で制作<br>当サイトに掲載させていただきます</div>
+        </div>
+        <div class="mc-body" style="padding-top:0;text-align:center">
+          <a href="#cta" class="mc-link">応募する →</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div></section>
+
+<!-- FAQ -->
+<section class="section-gray" id="faq"><div class="section-inner">
+  <p class="sec-eyebrow reveal">FAQ</p>
+  <h2 class="sec-headline reveal rd1">よくある質問</h2>
+  <div class="faq-list">
+    <div class="faq-item reveal rd1"><div class="faq-q" onclick="this.parentElement.classList.toggle('open')"><span>ホームページの知識がなくても大丈夫ですか？</span><span class="faq-chevron"><i data-lucide="chevron-down"></i></span></div><div class="faq-a"><p>まったく問題ありません。Googleフォームに答えるだけで、デザインから制作まですべてお任せいただけます。ITの知識は一切不要です。</p></div></div>
+    <div class="faq-item reveal rd2"><div class="faq-q" onclick="this.parentElement.classList.toggle('open')"><span>写真やSNSがなくても作れますか？</span><span class="faq-chevron"><i data-lucide="chevron-down"></i></span></div><div class="faq-a"><p>はい、作れます！Instagram・Google MAP・お手持ちの写真・友人が撮った写真など、どんな素材でもOK。参考画像やイメージカラーだけでも制作可能です。</p></div></div>
+    <div class="faq-item reveal rd3"><div class="faq-q" onclick="this.parentElement.classList.toggle('open')"><span>本当にランニング費用はゼロですか？</span><span class="faq-chevron"><i data-lucide="chevron-down"></i></span></div><div class="faq-a"><p>はい、一切かかりません。サーバー代・ドメイン代・更新費用すべて買い切り価格に含まれています。</p></div></div>
+    <div class="faq-item reveal"><div class="faq-q" onclick="this.parentElement.classList.toggle('open')"><span>修正は何回までできますか？</span><span class="faq-chevron"><i data-lucide="chevron-down"></i></span></div><div class="faq-a"><p>デザイン確認後、軽微な修正は2回まで無料で対応します。大幅な変更は別途ご相談ください。</p></div></div>
+    <div class="faq-item reveal"><div class="faq-q" onclick="this.parentElement.classList.toggle('open')"><span>紹介がないと申し込めませんか？</span><span class="faq-chevron"><i data-lucide="chevron-down"></i></span></div><div class="faq-a"><p>はい、現在はKAZUTOの繋がり限定のクローズドプランです。お知り合いからのご紹介でのみ受付しています。</p></div></div>
+    <div class="faq-item reveal"><div class="faq-q" onclick="this.parentElement.classList.toggle('open')"><span>独自ドメインは必要ですか？</span><span class="faq-chevron"><i data-lucide="chevron-down"></i></span></div><div class="faq-a"><p>必須ではありません。無料サブドメインでも公開可能です。独自ドメインをご希望の方はオプション（+5,000円）で取得・設定を代行します。</p></div></div>
+    <div class="faq-item reveal"><div class="faq-q" onclick="this.parentElement.classList.toggle('open')"><span>オプションは後から追加できますか？</span><span class="faq-chevron"><i data-lucide="chevron-down"></i></span></div><div class="faq-a"><p>はい、納品後でもいつでも追加いただけます。「やっぱりロゴも欲しい」「ページを増やしたい」など、お気軽にご相談ください。</p></div></div>
+  </div>
+</div></section>
+
+<!-- Profile -->
+<section class="section-white" id="profile"><div class="section-inner"><div class="profile-grid">
+  <div class="profile-img reveal" style="background:#2E7D32">
+    <img src="kazuto.JPG" alt="KAZUTO" style="width:100%;height:100%;object-fit:cover">
+  </div>
+  <div>
+    <p class="sec-eyebrow reveal">Profile</p>
+    <div class="pf-name reveal rd1">KAZUTO</div>
+    <div class="pf-name-sub reveal rd1">KAZUTO ⛳ Golfer — @kazuto086</div>
+    <p class="pf-bio reveal rd2"><strong>AI × Web制作</strong>で、「ホームページを持ちたかったけど、費用や難しさで諦めていた人」を全力で応援。最新のAI技術を活用し、<strong>低コスト・高品質・スピード納品</strong>を実現。仲間の繋がりを大切に、紹介制で運営しています。</p>
+    <a href="https://www.instagram.com/kazuto086" target="_blank" rel="noopener" class="pf-ig reveal rd3">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069z"/></svg>
+      @kazuto086
+    </a>
+    <div class="ig-feed reveal rd4">
+      <div class="ig-feed-label">Latest Posts</div>
+      <div class="ig-feed-grid">
+        <div class="ig-feed-item" onclick="window.open('https://www.instagram.com/kazuto086','_blank')"><img src="https://images.unsplash.com/photo-1535131749006-b7f58c99034b?w=300&h=300&fit=crop&q=80" alt="Golf"><div class="ig-feed-overlay"><i data-lucide="external-link"></i></div></div>
+        <div class="ig-feed-item" onclick="window.open('https://www.instagram.com/kazuto086','_blank')"><img src="https://images.unsplash.com/photo-1587174486073-ae5e5cff23aa?w=300&h=300&fit=crop&q=80" alt="Golf"><div class="ig-feed-overlay"><i data-lucide="external-link"></i></div></div>
+        <div class="ig-feed-item" onclick="window.open('https://www.instagram.com/kazuto086','_blank')"><img src="https://images.unsplash.com/photo-1593111774240-d529f12cf4bb?w=300&h=300&fit=crop&q=80" alt="Golf"><div class="ig-feed-overlay"><i data-lucide="external-link"></i></div></div>
+      </div>
+    </div>
+  </div>
+</div></div></section>
+
+<!-- CTA -->
+<section class="cta-section" id="cta"><div class="cta-inner">
+  <div class="cta-icon reveal"><i data-lucide="sparkles"></i></div>
+  <h2 class="cta-title reveal rd1">「まぁいっか」を、<br>「やってよかった」に。</h2>
+  <p class="cta-desc reveal rd2">お金がかかるから、難しそうだから。<br>そう思って諦めていたホームページ。<br>AI KAZUTOが、あなたの素材から<br>あなたらしいサイトをお作りします。</p>
+  <div class="hero-cta reveal rd3">
+    <a href="#" class="btn-apple primary" onclick="alert('Googleフォームのリンクをここに設定してください');return false;">無料で相談してみる</a>
+    <a href="https://www.instagram.com/kazuto086" target="_blank" rel="noopener" class="btn-apple secondary">InstagramでDMする <span class="arrow">→</span></a>
+  </div>
+  <p class="reveal rd4" style="margin-top:24px;font-size:.72rem;color:var(--text-tertiary);line-height:1.8">相談は無料です。まずはお気軽にお問い合わせください。<br>毎月5名限定・紹介制のため、お早めにご連絡ください。</p>
+</div></section>
+
+<footer>
+  <div>AI KAZUTO &nbsp;·&nbsp; 紹介制クローズドプラン</div>
+  <div style="margin-top:4px">&copy; 2026 AI KAZUTO. All rights reserved.</div>
+</footer>
+
+<script>
+window.addEventListener('scroll',()=>{
+  const s=window.scrollY,d=document.documentElement.scrollHeight-window.innerHeight;
+  document.getElementById('scrollProgress').style.width=(s/d*100)+'%';
+});
+const obs=new IntersectionObserver(entries=>{
+  entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('active');obs.unobserve(e.target)}});
+},{threshold:0.1,rootMargin:'0px 0px -60px 0px'});
+document.querySelectorAll('.reveal').forEach(el=>obs.observe(el));
+document.querySelectorAll('a[href^="#"]').forEach(a=>{
+  a.addEventListener('click',function(e){e.preventDefault();const t=document.querySelector(this.getAttribute('href'));if(t)t.scrollIntoView({behavior:'smooth',block:'start'})});
+});
+lucide.createIcons();
+</script>
+</body>
+</html>
