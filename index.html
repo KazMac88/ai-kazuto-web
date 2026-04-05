@@ -188,7 +188,7 @@
       "name": "独自ドメインは必要ですか？",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "必須ではありません。無料サブドメインでも公開可能です。独自ドメインをご希望の方はオプション（+5,000円）で取得・設定を代行します。"
+        "text": "必須ではありません。無料サブドメインでも公開可能です。独自ドメインをご希望の方は「安心サポートプラン（月額3,000円）」に含まれており、取得・設定を代行します。細かい更新対応もまとめて含まれます。"
       }
     },
     {
@@ -498,6 +498,9 @@ img{max-width:100%;display:block}
 .opt-card.free{background:linear-gradient(160deg,#e8f9ee,#d7f5e1);border:1.5px solid #34C759}
 .opt-card.free::before{content:'FREE';position:absolute;top:12px;right:12px;font-size:.58rem;font-weight:900;color:#fff;background:#34C759;padding:3px 9px;border-radius:100px;letter-spacing:1px}
 .opt-card.free .opt-price{color:#1f7a3a}
+.opt-card.reco{background:linear-gradient(160deg,#fff4e6,#ffe3c2);border:1.5px solid #FF9500}
+.opt-card.reco::before{content:'おすすめ';position:absolute;top:12px;right:12px;font-size:.58rem;font-weight:900;color:#fff;background:#FF9500;padding:3px 9px;border-radius:100px;letter-spacing:1px}
+.opt-card.reco .opt-price{color:#b4560a}
 .opt-card:hover{transform:translateY(-3px);box-shadow:var(--shadow-sm);border-color:rgba(0,0,0,.1)}
 .opt-icon{width:36px;height:36px;border-radius:10px;display:flex;align-items:center;justify-content:center;margin-bottom:12px;background:#fff;box-shadow:var(--shadow-sm)}
 .opt-icon svg{width:18px;height:18px;stroke-width:1.6;color:var(--blue)}
@@ -893,12 +896,12 @@ footer a{color:var(--blue)}
     <h2 class="sec-headline reveal rd1" style="font-size:clamp(1.8rem,4vw,2.5rem)" data-en="Want more? Add-ons are ready.">もっと充実させたい方へ。</h2>
     <p class="sec-desc reveal rd2" data-en="Optional add-ons that pair with any base plan.">基本プランに追加できるオプションメニューです。</p>
     <div class="opt-grid">
-      <div class="opt-card reveal rd1"><div class="opt-icon"><i data-lucide="globe"></i></div><div class="opt-name" data-en="Custom Domain">独自ドメイン取得・設定</div><div class="opt-desc" data-en="Set up your own custom URL like “yourshop.com”. Acquisition and configuration handled for you.">「yourshop.com」など、あなただけのURLを取得して設定します。取得・設定代行込み。</div><div class="opt-price" data-en="¥1,000 <span>/ month</span>">月額1,000円 <span>/ サブスク</span></div></div>
+      <div class="opt-card reco reveal rd1"><div class="opt-icon"><i data-lucide="shield-check"></i></div><div class="opt-name" data-en="Peace-of-Mind Support">安心サポートプラン</div><div class="opt-desc" data-en="Custom domain acquisition &amp; setup, plus unlimited minor updates (text / photo swaps / small tweaks). Everything handled for you.">独自ドメイン取得・設定＋細かい更新対応（文言修正・写真差し替え・軽微な変更など）が含まれる安心プラン。まるっとお任せOK。</div><div class="opt-price" data-en="¥3,000 <span>/ month</span>">月額3,000円 <span>/ サブスク</span></div></div>
       <div class="opt-card reveal rd2"><div class="opt-icon"><i data-lucide="file-plus"></i></div><div class="opt-name" data-en="Additional Page">ページ追加</div><div class="opt-desc" data-en="Add menu detail pages, gallery pages, and more — one page at a time.">メニュー詳細ページ、ギャラリーページなど、1ページ単位で追加できます。</div><div class="opt-price" data-en="+¥5,000 <span>/ per page</span>">+5,000円 <span>/ 1ページ</span></div></div>
       <div class="opt-card reveal rd3"><div class="opt-icon"><i data-lucide="pen-tool"></i></div><div class="opt-name" data-en="Logo Design">ロゴデザイン制作</div><div class="opt-desc" data-en="Original logo design for your business. Usable on websites, business cards, and social media.">お店・サービスのオリジナルロゴをデザイン。サイトだけでなく名刺やSNSにも使えます。</div><div class="opt-price" data-en="+¥5,000 <span>/ one-time</span>">+5,000円 <span>/ 買い切り</span></div></div>
       <div class="opt-card free reveal rd4"><div class="opt-icon"><i data-lucide="mail"></i></div><div class="opt-name" data-en="Contact Form &amp; Social Links">お問い合わせフォーム＋SNS連携</div><div class="opt-desc" data-en="Inquiry form delivered by email, plus integrated LINE / X / Instagram / Facebook / TikTok links. Bundled as one complimentary option.">お問い合わせフォーム設置と、LINE公式・X・Instagram・Facebook・TikTokなど各種SNS導線を一括で設置。セットで無料サービス。</div><div class="opt-price" data-en="FREE <span>/ included</span>">0円 <span>/ 無料サービス</span></div></div>
       <div class="opt-card reveal rd5"><div class="opt-icon"><i data-lucide="type"></i></div><div class="opt-name" data-en="Multilingual (English)">多言語対応（英語）</div><div class="opt-desc" data-en="Add a fully native English version. Ideal for inbound tourism and overseas customers.">英語版ページを追加。ネイティブレベルの英訳で、インバウンド対応や海外のお客様向けに。</div><div class="opt-price" data-en="+¥10,000 <span>/ one-time</span>">+10,000円 <span>/ 買い切り</span></div></div>
-      <div class="opt-card reveal rd6"><div class="opt-icon"><i data-lucide="wrench"></i></div><div class="opt-name" data-en="Post-delivery Revisions">納品後の追加修正</div><div class="opt-desc" data-en="Edits after delivery — text updates, photo replacements, minor layout tweaks, and more.">納品後に「やっぱりここを変えたい」という場合の修正対応。テキスト・写真差し替え等。</div><div class="opt-price" data-en="+¥3,000 <span>/ per revision</span>">+3,000円 <span>/ 1回</span></div></div>
+      <div class="opt-card reveal rd6"><div class="opt-icon"><i data-lucide="wrench"></i></div><div class="opt-name" data-en="Post-delivery Revisions">納品後の追加修正</div><div class="opt-desc" data-en="Single-shot edits after delivery — up to 3 spots per request. Text updates, photo swaps, minor tweaks, etc.">納品後の単発修正。1回につき3箇所まで対応（文言修正・写真差し替え・軽微な変更など）。</div><div class="opt-price" data-en="+¥3,000 <span>/ up to 3 spots</span>">+3,000円 <span>/ 3箇所まで</span></div></div>
     </div>
     <p class="opt-note reveal" data-en="※ Add-ons can be ordered alongside a base plan or any time after delivery.<br>※ Multi-option orders qualify for bundled discounts (just ask).">※ オプションは基本プランと同時、または納品後いつでもご依頼いただけます<br>※ 複数オプション同時注文で割引あり（お気軽にご相談ください）</p>
   </div>
@@ -1141,8 +1144,8 @@ footer a{color:var(--blue)}
   const KB = [
     {k:['料金','価格','値段','いくら','費用','プラン','コスト','price','cost','plan'],
      a:'料金はシンプルな4プラン！<br><br>・<b>Monitor Plan</b>：¥19,800（税抜・買い切り）／実績ページ掲載の特別枠<br>・<b>Basic Plan</b>：¥29,800（おすすめ）<br>・<b>MAP+ Plan</b>：¥39,800（店舗向け・Google MAP埋込）<br>・<b>自分で作るPlan</b>：¥50,000（マンツーマン指導）<br><br>全て買い切り・月額ゼロです！'},
-    {k:['月額','ランニング','維持','サーバー','ドメイン','更新費','running','monthly'],
-     a:'月額費用・サーバー代はかかりません！初回のお支払いのみです。<br>※プランや条件によって変わります。独自ドメイン希望の場合のみ月額¥1,000のオプションあり。'},
+    {k:['月額','ランニング','維持','サーバー','更新費','running','monthly'],
+     a:'月額費用・サーバー代は基本かかりません！初回のお支払いのみでOKです。<br>納品後の更新が発生しない方はそのまま0円で運用可能。<br>「細かい更新を気軽にお願いしたい」「独自ドメインも欲しい」という方には<b>安心サポートプラン（月額¥3,000）</b>がおすすめです！'},
     {k:['納期','期間','日数','時間','いつ','早い','スピード','納品','delivery','fast','time'],
      a:'最短1週間〜で納品します！アンケートにお答えいただいてから約1週間でサイト完成します。急ぎの場合も対応可能なのでご相談ください。'},
     {k:['知識','初心者','難しい','わからない','素人','it','知らない','beginner','easy'],
@@ -1150,13 +1153,13 @@ footer a{color:var(--blue)}
     {k:['写真','素材','sns','instagram','インスタ','持ってない','ない','material','photo'],
      a:'写真やSNSがなくても作れます！Instagram・Google MAP・お手持ちの写真・友人が撮った写真など、どんな素材でもOK。参考画像やイメージカラーだけでも制作可能です。'},
     {k:['修正','リビジョン','変更','直し','revision','edit','change'],
-     a:'デザイン確認後、軽微な修正は2回まで無料で対応します。大幅な変更は別途ご相談ください。納品後の追加修正はオプション（+¥3,000/回）で承ります。'},
+     a:'デザイン確認後、軽微な修正は2回まで無料で対応します。大幅な変更は別途ご相談ください。<br>納品後の単発修正はオプション（+¥3,000／1回あたり3箇所まで）で承ります。<br>頻繁に更新したい方は<b>安心サポートプラン（月額¥3,000）</b>だと細かい更新が含まれてお得です！'},
     {k:['紹介','クローズド','申込','申し込み','依頼','referral','apply'],
      a:'現在はKAZUTOの繋がり限定のクローズドプランです。お知り合いからのご紹介でのみ受付しています。ご紹介がある方はページ下部のお問い合わせ、またはInstagram（@kazuto086）のDMからご連絡ください！'},
     {k:['独自ドメイン','ドメイン','url','domain'],
-     a:'独自ドメインは必須ではありません。無料サブドメインでも公開可能です。ご希望の方はオプション（月額¥1,000）で取得・設定を代行します（「yourshop.com」のような形）。'},
+     a:'独自ドメインは必須ではありません。無料サブドメインでも公開可能です。ご希望の方は<b>安心サポートプラン（月額¥3,000）</b>に含まれており、取得・設定を代行します（「yourshop.com」のような形）。細かい更新対応もまとめて含まれるのでお得ですよ！'},
     {k:['オプション','追加','アドオン','option','addon'],
-     a:'オプションは豊富にあります！<br>・独自ドメイン ¥1,000/月<br>・ページ追加 +¥5,000/ページ<br>・ロゴ制作 +¥5,000<br>・お問い合わせフォーム＋SNS連携 <b>無料</b><br>・多言語対応（英語）+¥10,000<br>・納品後修正 +¥3,000/回'},
+     a:'オプションは全6種類！<br>・<b>安心サポートプラン ¥3,000/月（おすすめ）</b>…独自ドメイン取得＋細かい更新対応<br>・ページ追加 +¥5,000/ページ<br>・ロゴ制作 +¥5,000<br>・お問い合わせフォーム＋SNS連携 <b>無料</b><br>・多言語対応（英語）+¥10,000<br>・納品後修正 +¥3,000/3箇所まで'},
     {k:['英語','多言語','english','翻訳','language','インバウンド'],
      a:'英語版ページ追加のオプションがあります（+¥10,000・買い切り）。ネイティブレベルの英訳で、インバウンド対応や海外のお客様向けに最適です。当サイトも右上のENボタンで英語表示に切替できますよ！'},
     {k:['スマホ','モバイル','レスポンシブ','mobile','responsive','iphone'],
