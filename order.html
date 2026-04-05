@@ -1,0 +1,527 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex,nofollow">
+<title>お申し込みフォーム｜AI KAZUTO</title>
+<link rel="icon" href="images/favicon.png">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;600;700;800;900&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<script src="https://unpkg.com/lucide@latest"></script>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{
+  --blue:#0071e3;--blue-hover:#0077ED;
+  --text-primary:#1d1d1f;--text-secondary:#424245;--text-tertiary:#6e6e73;
+  --bg:#fff;--bg-secondary:#f5f5f7;--border:rgba(0,0,0,.08);--border-strong:rgba(0,0,0,.16);
+  --radius-sm:8px;--radius-md:12px;--radius-lg:18px;--radius-xl:24px;
+  --shadow-sm:0 2px 8px rgba(0,0,0,.04);--shadow-md:0 8px 24px rgba(0,0,0,.08);
+  --orange:#FF9500;--green:#34C759;--red:#FF3B30;
+}
+html{scroll-behavior:smooth}
+body{font-family:'Noto Sans JP','Inter',-apple-system,sans-serif;color:var(--text-primary);background:var(--bg-secondary);line-height:1.7;-webkit-font-smoothing:antialiased}
+
+.topbar{position:sticky;top:0;z-index:100;background:rgba(255,255,255,.85);backdrop-filter:saturate(180%) blur(20px);-webkit-backdrop-filter:saturate(180%) blur(20px);border-bottom:1px solid var(--border)}
+.topbar-inner{max-width:860px;margin:0 auto;padding:14px 24px;display:flex;align-items:center;justify-content:space-between}
+.logo{font-weight:800;font-size:1.05rem;letter-spacing:-.3px;text-decoration:none;color:var(--text-primary)}
+.logo span{color:var(--blue)}
+.back-link{font-size:.8rem;color:var(--text-tertiary);text-decoration:none;display:flex;align-items:center;gap:4px}
+.back-link:hover{color:var(--blue)}
+.back-link svg{width:14px;height:14px}
+
+.wrap{max-width:860px;margin:0 auto;padding:56px 24px 120px}
+.head{text-align:center;margin-bottom:56px}
+.eyebrow{font-size:.78rem;font-weight:700;color:var(--blue);letter-spacing:1.2px;text-transform:uppercase;margin-bottom:10px}
+.title{font-size:clamp(1.9rem,4.5vw,2.6rem);font-weight:800;letter-spacing:-.5px;line-height:1.3;margin-bottom:14px}
+.subtitle{font-size:.95rem;color:var(--text-tertiary);line-height:1.8}
+
+.card{background:#fff;border-radius:var(--radius-xl);padding:40px 44px;box-shadow:var(--shadow-sm);border:1px solid var(--border);margin-bottom:24px}
+.card-title{font-size:1.1rem;font-weight:800;letter-spacing:-.2px;margin-bottom:6px;display:flex;align-items:center;gap:10px}
+.card-title .num{display:inline-flex;align-items:center;justify-content:center;width:28px;height:28px;border-radius:50%;background:var(--blue);color:#fff;font-size:.78rem;font-weight:800;font-family:'Inter'}
+.card-desc{font-size:.82rem;color:var(--text-tertiary);margin-bottom:28px;padding-left:38px}
+
+.field{margin-bottom:22px}
+.field.full{grid-column:1 / -1}
+.row2{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+label{display:block;font-size:.82rem;font-weight:600;color:var(--text-primary);margin-bottom:8px}
+label .req{color:var(--red);font-size:.72rem;font-weight:700;margin-left:4px}
+label .opt{color:var(--text-tertiary);font-size:.68rem;font-weight:500;margin-left:6px}
+
+input[type=text],input[type=email],input[type=tel],input[type=url],input[type=number],textarea,select{
+  width:100%;padding:13px 16px;font-size:.9rem;font-family:inherit;color:var(--text-primary);
+  background:#fff;border:1.5px solid var(--border);border-radius:var(--radius-md);
+  transition:all .2s;outline:none
+}
+input:focus,textarea:focus,select:focus{border-color:var(--blue);box-shadow:0 0 0 4px rgba(0,113,227,.1)}
+textarea{resize:vertical;min-height:110px;line-height:1.7}
+select{appearance:none;-webkit-appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%236e6e73' stroke-width='2.5'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 16px center;padding-right:40px}
+
+.radio-group,.check-group{display:flex;flex-direction:column;gap:10px}
+.radio-item,.check-item{display:flex;align-items:flex-start;gap:12px;padding:14px 16px;border:1.5px solid var(--border);border-radius:var(--radius-md);cursor:pointer;transition:all .2s;background:#fff}
+.radio-item:hover,.check-item:hover{border-color:var(--blue);background:#fafbff}
+.radio-item input,.check-item input{margin-top:3px;accent-color:var(--blue);width:16px;height:16px;cursor:pointer;flex-shrink:0}
+.radio-item input:checked + .ri-body,.check-item input:checked + .ri-body{color:var(--blue)}
+.ri-body{flex:1}
+.ri-title{font-size:.88rem;font-weight:700;margin-bottom:2px}
+.ri-price{font-size:.82rem;color:var(--blue);font-weight:700}
+.ri-desc{font-size:.72rem;color:var(--text-tertiary);margin-top:3px;line-height:1.6}
+.ri-badge{display:inline-block;font-size:.58rem;font-weight:900;padding:2px 8px;border-radius:100px;color:#fff;background:var(--orange);margin-left:6px;vertical-align:middle;letter-spacing:.5px}
+
+.file-field{border:1.5px dashed var(--border-strong);border-radius:var(--radius-md);padding:20px;text-align:center;background:#fafbff;cursor:pointer;transition:all .2s}
+.file-field:hover{border-color:var(--blue);background:#f0f6ff}
+.file-field input{display:none}
+.file-field .fi-icon{width:28px;height:28px;color:var(--blue);margin:0 auto 6px;display:block}
+.file-field .fi-text{font-size:.78rem;font-weight:600;color:var(--text-primary);margin-bottom:3px}
+.file-field .fi-note{font-size:.68rem;color:var(--text-tertiary)}
+.file-list{margin-top:10px;font-size:.72rem;color:var(--text-tertiary)}
+
+/* Terms box */
+.terms-wrap{margin-top:16px}
+.terms-box{height:320px;overflow-y:auto;border:1.5px solid var(--border);border-radius:var(--radius-md);padding:24px 28px;background:#fafbfc;font-size:.76rem;line-height:1.9;color:var(--text-secondary);scroll-behavior:smooth}
+.terms-box h4{font-size:.82rem;font-weight:800;color:var(--text-primary);margin:18px 0 6px;letter-spacing:-.2px}
+.terms-box h4:first-child{margin-top:0}
+.terms-box p{margin-bottom:8px}
+.terms-box ul{margin:6px 0 10px 18px}
+.terms-box li{margin-bottom:4px}
+.terms-box::-webkit-scrollbar{width:8px}
+.terms-box::-webkit-scrollbar-track{background:transparent}
+.terms-box::-webkit-scrollbar-thumb{background:rgba(0,0,0,.15);border-radius:4px}
+
+.scroll-hint{display:flex;align-items:center;justify-content:center;gap:6px;margin-top:10px;font-size:.7rem;color:var(--text-tertiary);font-weight:500}
+.scroll-hint svg{width:12px;height:12px;animation:bounceY 1.6s infinite}
+@keyframes bounceY{0%,100%{transform:translateY(0)}50%{transform:translateY(3px)}}
+.scroll-hint.hidden{display:none}
+
+.agree-box{margin-top:18px;padding:18px 20px;border:1.5px solid var(--border);border-radius:var(--radius-md);background:#fafbfc;display:flex;align-items:flex-start;gap:12px;opacity:.55;pointer-events:none;transition:all .3s}
+.agree-box.enabled{opacity:1;pointer-events:auto;border-color:var(--blue);background:#f0f6ff}
+.agree-box input{width:18px;height:18px;margin-top:2px;accent-color:var(--blue);cursor:pointer;flex-shrink:0}
+.agree-box label{margin:0;font-size:.85rem;font-weight:700;color:var(--text-primary);cursor:pointer}
+.agree-box .note{font-size:.7rem;color:var(--text-tertiary);font-weight:500;margin-top:3px;display:block}
+
+.submit-btn{display:block;width:100%;margin-top:32px;padding:20px;font-size:1rem;font-weight:800;color:#fff;background:var(--blue);border:none;border-radius:100px;cursor:pointer;transition:all .3s;letter-spacing:.3px;font-family:inherit;box-shadow:0 6px 20px rgba(0,113,227,.28)}
+.submit-btn:hover:not(:disabled){background:var(--blue-hover);transform:translateY(-2px);box-shadow:0 10px 28px rgba(0,113,227,.35)}
+.submit-btn:disabled{background:#c7c7cc;box-shadow:none;cursor:not-allowed}
+
+.footer-note{text-align:center;font-size:.72rem;color:var(--text-tertiary);margin-top:24px;line-height:1.8}
+.footer-note a{color:var(--blue);text-decoration:none}
+
+@media(max-width:640px){
+  .wrap{padding:32px 16px 80px}
+  .card{padding:28px 22px;border-radius:var(--radius-lg)}
+  .card-desc{padding-left:0}
+  .row2{grid-template-columns:1fr;gap:0}
+  .terms-box{height:280px;padding:18px 20px;font-size:.72rem}
+}
+</style>
+</head>
+<body>
+
+<div class="topbar">
+  <div class="topbar-inner">
+    <a href="index.html" class="logo">AI <span>KAZUTO</span></a>
+    <a href="index.html" class="back-link"><i data-lucide="arrow-left"></i>トップに戻る</a>
+  </div>
+</div>
+
+<div class="wrap">
+  <div class="head">
+    <div class="eyebrow">Order Form</div>
+    <h1 class="title">お申し込みフォーム。</h1>
+    <p class="subtitle">ご紹介を受けた方限定のクローズド受付です。<br>以下の項目をご記入の上、送信してください。折り返しご連絡いたします。</p>
+  </div>
+
+  <form id="orderForm" action="https://formsubmit.co/gachihotoken@gmail.com" method="POST" enctype="multipart/form-data">
+    <input type="hidden" name="_subject" value="【AI KAZUTO】新しいお申し込みが届きました">
+    <input type="hidden" name="_template" value="table">
+    <input type="hidden" name="_captcha" value="false">
+
+    <!-- 1. お客様情報 -->
+    <div class="card">
+      <h2 class="card-title"><span class="num">1</span>お客様情報</h2>
+      <p class="card-desc">ご連絡に必要な基本情報をお教えください。</p>
+
+      <div class="row2">
+        <div class="field"><label>お名前<span class="req">必須</span></label><input type="text" name="name" required placeholder="山田 太郎"></div>
+        <div class="field"><label>フリガナ<span class="req">必須</span></label><input type="text" name="kana" required placeholder="ヤマダ タロウ"></div>
+      </div>
+      <div class="row2">
+        <div class="field"><label>メールアドレス<span class="req">必須</span></label><input type="email" name="email" required placeholder="you@example.com"></div>
+        <div class="field"><label>電話番号<span class="opt">任意</span></label><input type="tel" name="tel" placeholder="090-1234-5678"></div>
+      </div>
+      <div class="field">
+        <label>ご連絡希望方法<span class="req">必須</span></label>
+        <select name="contact_method" id="contactMethod" required>
+          <option value="">選択してください</option>
+          <option value="メール">メール</option>
+          <option value="LINE">LINE</option>
+          <option value="Instagram DM">Instagram DM</option>
+          <option value="電話">電話</option>
+        </select>
+      </div>
+      <div class="field" id="contactLine" style="display:none">
+        <label>LINE ID／表示名<span class="req">必須</span></label>
+        <input type="text" name="contact_line" placeholder="例：kazuto_line または LINE表示名">
+      </div>
+      <div class="field" id="contactIg" style="display:none">
+        <label>Instagramアカウント<span class="req">必須</span></label>
+        <input type="text" name="contact_ig" placeholder="例：@kazuto086">
+      </div>
+      <div class="field" id="contactPhone" style="display:none">
+        <label>お電話希望時間帯<span class="opt">任意</span></label>
+        <input type="text" name="contact_phone_note" placeholder="例：平日10〜18時／夜がつながりやすい 等">
+      </div>
+      <div class="field">
+        <label>ご紹介者のお名前<span class="req">必須</span></label>
+        <input type="text" name="referrer" required placeholder="紹介してくださった方のお名前">
+      </div>
+    </div>
+
+    <!-- 2. 事業・お店情報 -->
+    <div class="card">
+      <h2 class="card-title"><span class="num">2</span>事業・お店の情報</h2>
+      <p class="card-desc">どんなサイトを作るかイメージするために教えてください。</p>
+
+      <div class="row2">
+        <div class="field"><label>屋号・店舗名・サービス名<span class="req">必須</span></label><input type="text" name="biz_name" required></div>
+        <div class="field"><label>業種・カテゴリ<span class="req">必須</span></label>
+          <select name="biz_category" required>
+            <option value="">選択してください</option>
+            <option>飲食・カフェ</option><option>美容・サロン</option><option>ジム・フィットネス</option>
+            <option>教室・スクール</option><option>士業・コンサル</option><option>物販・EC</option>
+            <option>医療・治療院</option><option>クリエイター・個人活動</option><option>その他</option>
+          </select>
+        </div>
+      </div>
+      <div class="row2">
+        <div class="field"><label>事業形態<span class="req">必須</span></label>
+          <select name="biz_type" required>
+            <option value="">選択してください</option>
+            <option>個人事業主</option><option>法人</option><option>副業</option><option>これから開業</option>
+          </select>
+        </div>
+        <div class="field"><label>所在地<span class="opt">店舗がある場合</span></label><input type="text" name="biz_address" placeholder="東京都世田谷区三軒茶屋..."></div>
+      </div>
+      <div class="field"><label>事業内容の簡単な説明<span class="req">必須</span></label>
+        <textarea name="biz_desc" required placeholder="何をしているお店・サービスか、3〜5行で教えてください。"></textarea>
+      </div>
+      <div class="field"><label>既存SNSアカウント（URL）<span class="opt">任意・複数可</span></label>
+        <textarea name="biz_sns" placeholder="Instagram / X / Facebook / TikTok / LINE公式 などのURLを改行で区切ってご記入ください。"></textarea>
+      </div>
+      <div class="field"><label>既存ホームページのURL<span class="opt">リニューアルの場合のみ</span></label>
+        <input type="url" name="biz_current_hp" placeholder="https://...">
+      </div>
+    </div>
+
+    <!-- 3. プラン選択 -->
+    <div class="card">
+      <h2 class="card-title"><span class="num">3</span>プランの選択</h2>
+      <p class="card-desc">ご希望のプランをお選びください。迷っている場合は最下部の「相談したい」を選択ください。</p>
+
+      <div class="radio-group">
+        <label class="radio-item"><input type="radio" name="plan" value="Monitor Plan ¥19,800" required><div class="ri-body"><div class="ri-title">Monitor Plan</div><div class="ri-price">¥19,800（買い切り）</div><div class="ri-desc">実績ページ掲載の特別枠。先着5名様まで。</div></div></label>
+        <label class="radio-item"><input type="radio" name="plan" value="Basic Plan ¥29,800"><div class="ri-body"><div class="ri-title">Basic Plan <span class="ri-badge" style="background:var(--blue)">おすすめ</span></div><div class="ri-price">¥29,800（買い切り）</div><div class="ri-desc">スタンダードプラン。ほとんどの方はこちらで十分。</div></div></label>
+        <label class="radio-item"><input type="radio" name="plan" value="MAP+ Plan ¥39,800"><div class="ri-body"><div class="ri-title">MAP+ Plan</div><div class="ri-price">¥39,800（買い切り）</div><div class="ri-desc">店舗向け。Google MAP埋込・予約導線付き。</div></div></label>
+        <label class="radio-item"><input type="radio" name="plan" value="自分で作るPlan ¥50,000"><div class="ri-body"><div class="ri-title">自分で作るPlan</div><div class="ri-price">¥50,000（買い切り）</div><div class="ri-desc">マンツーマン指導で自分で作れるようになります。</div></div></label>
+        <label class="radio-item"><input type="radio" name="plan" value="相談したい"><div class="ri-body"><div class="ri-title">迷っているので相談したい</div><div class="ri-desc">ヒアリングを経ておすすめプランをご提案します。</div></div></label>
+      </div>
+    </div>
+
+    <!-- 4. オプション -->
+    <div class="card">
+      <h2 class="card-title"><span class="num">4</span>オプション</h2>
+      <p class="card-desc">ご希望のオプションをすべてお選びください（複数選択可・任意）。</p>
+
+      <div class="check-group">
+        <label class="check-item"><input type="checkbox" name="options" value="安心サポートプラン ¥3,000/月"><div class="ri-body"><div class="ri-title">安心サポートプラン <span class="ri-badge">おすすめ</span></div><div class="ri-price">月額¥3,000</div><div class="ri-desc">独自ドメイン取得・設定＋細かい更新対応込み。</div></div></label>
+        <label class="check-item"><input type="checkbox" name="options" value="ページ追加"><div class="ri-body"><div class="ri-title">ページ追加</div><div class="ri-price">+¥5,000 / 1ページ</div></div></label>
+        <label class="check-item"><input type="checkbox" name="options" value="ロゴデザイン制作"><div class="ri-body"><div class="ri-title">ロゴデザイン制作</div><div class="ri-price">+¥5,000（買い切り）</div></div></label>
+        <label class="check-item"><input type="checkbox" name="options" value="お問い合わせフォーム＋SNS連携"><div class="ri-body"><div class="ri-title">お問い合わせフォーム＋SNS連携</div><div class="ri-price" style="color:var(--green)">無料サービス</div></div></label>
+        <label class="check-item"><input type="checkbox" name="options" value="多言語対応（英語）"><div class="ri-body"><div class="ri-title">多言語対応（英語）</div><div class="ri-price">+¥10,000（買い切り）</div></div></label>
+      </div>
+
+      <div class="field" style="margin-top:22px">
+        <label>追加ページ数<span class="opt">「ページ追加」を選んだ方のみ</span></label>
+        <input type="number" name="page_add_count" min="0" max="50" placeholder="0">
+      </div>
+      <div class="field">
+        <label>希望独自ドメイン案<span class="opt">「安心サポートプラン」を選んだ方のみ</span></label>
+        <input type="text" name="domain_wish" placeholder="例：yourshop.com">
+      </div>
+    </div>
+
+    <!-- 5. サイトの方向性 -->
+    <div class="card">
+      <h2 class="card-title"><span class="num">5</span>サイトの方向性</h2>
+      <p class="card-desc">あなたのイメージをできるだけ詳しく教えてください。</p>
+
+      <div class="field"><label>サイトの目的<span class="req">必須</span></label>
+        <textarea name="site_purpose" required placeholder="例：新規顧客の集客、ブランディング、予約受付、メニュー紹介、採用..."></textarea>
+      </div>
+      <div class="field"><label>ターゲット顧客<span class="opt">任意</span></label>
+        <textarea name="site_target" placeholder="例：20〜40代女性、近隣エリア在住、美容意識の高い方..."></textarea>
+      </div>
+      <div class="field"><label>参考にしたいサイト<span class="opt">任意・URL複数可</span></label>
+        <textarea name="site_refs" placeholder="「こんな雰囲気が好き」というサイトのURLがあればご記入ください。"></textarea>
+      </div>
+      <div class="row2">
+        <div class="field"><label>イメージカラー・雰囲気<span class="opt">任意</span></label>
+          <input type="text" name="site_mood" placeholder="例：ナチュラル＆ベージュ系 / スタイリッシュ黒 / かわいいパステル">
+        </div>
+        <div class="field"><label>公開希望時期<span class="req">必須</span></label>
+          <select name="site_due" required>
+            <option value="">選択してください</option>
+            <option>最短（1週間以内）</option><option>2週間以内</option><option>1ヶ月以内</option><option>特に決まっていない</option>
+          </select>
+        </div>
+      </div>
+      <div class="field"><label>サイトに載せたい内容<span class="opt">任意・複数可</span></label>
+        <div class="check-group" style="gap:8px">
+          <label class="check-item" style="padding:10px 14px"><input type="checkbox" name="content" value="メニュー・料金"><div class="ri-body"><div class="ri-title" style="font-size:.8rem">メニュー・料金</div></div></label>
+          <label class="check-item" style="padding:10px 14px"><input type="checkbox" name="content" value="アクセス・地図"><div class="ri-body"><div class="ri-title" style="font-size:.8rem">アクセス・地図</div></div></label>
+          <label class="check-item" style="padding:10px 14px"><input type="checkbox" name="content" value="スタッフ紹介"><div class="ri-body"><div class="ri-title" style="font-size:.8rem">スタッフ紹介</div></div></label>
+          <label class="check-item" style="padding:10px 14px"><input type="checkbox" name="content" value="お客様の声"><div class="ri-body"><div class="ri-title" style="font-size:.8rem">お客様の声</div></div></label>
+          <label class="check-item" style="padding:10px 14px"><input type="checkbox" name="content" value="ギャラリー"><div class="ri-body"><div class="ri-title" style="font-size:.8rem">ギャラリー・作品集</div></div></label>
+          <label class="check-item" style="padding:10px 14px"><input type="checkbox" name="content" value="予約フォーム"><div class="ri-body"><div class="ri-title" style="font-size:.8rem">予約フォーム</div></div></label>
+          <label class="check-item" style="padding:10px 14px"><input type="checkbox" name="content" value="お知らせ・ブログ"><div class="ri-body"><div class="ri-title" style="font-size:.8rem">お知らせ・ブログ</div></div></label>
+        </div>
+      </div>
+    </div>
+
+    <!-- 6. 素材 -->
+    <div class="card">
+      <h2 class="card-title"><span class="num">6</span>素材の有無</h2>
+      <p class="card-desc">お手元の素材状況を教えてください。無くても制作可能です。</p>
+
+      <div class="row2">
+        <div class="field"><label>写真素材<span class="req">必須</span></label>
+          <select name="material_photo" required>
+            <option value="">選択してください</option>
+            <option>持っている</option><option>Instagramから流用OK</option><option>無い・相談したい</option>
+          </select>
+        </div>
+        <div class="field"><label>ロゴ<span class="req">必須</span></label>
+          <select name="material_logo" required>
+            <option value="">選択してください</option>
+            <option>持っている</option><option>無い</option><option>オプションで制作希望</option>
+          </select>
+        </div>
+      </div>
+      <div class="field"><label>文章原稿<span class="req">必須</span></label>
+        <select name="material_text" required>
+          <option value="">選択してください</option>
+          <option>持っている</option><option>項目ベースで相談したい</option><option>全てお任せしたい</option>
+        </select>
+      </div>
+      <div class="field"><label>素材アップロード<span class="opt">任意・画像/PDF/Wordなど</span></label>
+        <label class="file-field">
+          <input type="file" name="files" multiple>
+          <i class="fi-icon" data-lucide="upload-cloud"></i>
+          <div class="fi-text">クリックしてファイルを選択</div>
+          <div class="fi-note">複数選択可・合計20MBまで</div>
+          <div class="file-list" id="fileList"></div>
+        </label>
+      </div>
+    </div>
+
+    <!-- 7. お支払い・その他 -->
+    <div class="card">
+      <h2 class="card-title"><span class="num">7</span>お支払い・その他</h2>
+      <p class="card-desc">最後の確認事項です。</p>
+
+      <div class="row2">
+        <div class="field"><label>お支払い方法<span class="req">必須</span></label>
+          <select name="payment" required>
+            <option value="">選択してください</option>
+            <option>銀行振込</option>
+            <option>JPYC（日本円ステーブルコイン）</option>
+            <option>その他（相談）</option>
+          </select>
+        </div>
+        <div class="field"><label>請求書の宛名<span class="opt">任意</span></label>
+          <input type="text" name="invoice_name" placeholder="個人名または屋号">
+        </div>
+      </div>
+      <div class="field"><label>ご質問・ご要望<span class="opt">任意</span></label>
+        <textarea name="notes" placeholder="ご要望・気になっている点など、自由にご記入ください。"></textarea>
+      </div>
+      <div class="field"><label>AI KAZUTOを知ったきっかけ<span class="opt">任意</span></label>
+        <select name="source">
+          <option value="">選択してください</option>
+          <option>Instagram</option><option>ご紹介</option><option>検索</option><option>その他</option>
+        </select>
+      </div>
+    </div>
+
+    <!-- 8. 利用規約 -->
+    <div class="card">
+      <h2 class="card-title"><span class="num">8</span>ご利用規約・同意事項</h2>
+      <p class="card-desc">最後までお読みいただき、ご同意の上で送信してください。</p>
+
+      <div class="terms-wrap">
+        <div class="terms-box" id="termsBox">
+
+<h4>第1条（本規約の適用）</h4>
+<p>本規約は、個人事業主「AI KAZUTO」（以下「当方」といいます）がお客様に対して提供するホームページ制作及び関連サービス（以下「本サービス」といいます）に関する一切の関係に適用されます。お客様が本サービスの申し込みを行った時点で、本規約の全ての条項に同意したものとみなします。</p>
+
+<h4>第2条（サービス内容）</h4>
+<p>本サービスは、お客様からご提供いただく情報・素材をもとに、当方がホームページ（以下「本成果物」といいます）を制作し納品するものです。本成果物の仕様・デザイン・機能は、選択されたプラン及びオプション内容に基づきます。</p>
+
+<h4>第3条（申し込みと契約成立）</h4>
+<p>お客様は、所定の申し込みフォームに必要事項を記入・送信することにより申し込みを行うものとします。当方がお申し込み内容を確認し、受注可否をご連絡した時点で契約が成立するものとします。当方は、次の各号に該当する場合、理由を問わず申し込みをお断りする場合があります。</p>
+<ul>
+<li>ご紹介者の確認が取れない場合</li>
+<li>公序良俗に反する内容または違法性があると当方が判断した場合</li>
+<li>制作物の内容が当方の対応範囲を超えると判断した場合</li>
+<li>その他、当方が不適当と判断した場合</li>
+</ul>
+
+<h4>第4条（料金および支払い）</h4>
+<p>本サービスの料金は、選択されたプランおよびオプションに応じて決定します。表示価格は特記がない限り税抜表示です。お支払いは原則として、契約成立後・制作開始前に全額前払いとし、所定の方法によりお支払いいただきます。振込手数料はお客様の負担とします。一度お支払いいただいた料金は、当方の責めに帰すべき事由による場合を除き、理由の如何を問わず返金いたしません。</p>
+
+<h4>第5条（素材・情報の提供）</h4>
+<p>お客様は、制作に必要な文章・画像・ロゴ・その他の素材を、当方が指定する期日までにご提供いただくものとします。素材提供の遅延により納期が延長された場合、当方は責任を負いません。お客様は、提供する素材が第三者の著作権・商標権・肖像権その他一切の権利を侵害していないことを保証するものとします。</p>
+
+<h4>第6条（修正対応）</h4>
+<p>制作過程における軽微な修正は2回までを無料の範囲とします。これを超える修正、大幅な仕様変更、およびデザインコンセプトの変更については、別途料金を頂戴する場合があります。納品後の修正は、有償オプション（1回あたり3箇所まで・¥3,000）または安心サポートプランにてご対応します。</p>
+
+<h4>第7条（納期）</h4>
+<p>当方は合理的な納期を設定し、その達成に努めますが、お客様からの素材提供の遅延、確認作業の遅延、仕様変更、天災・通信障害・外部サービスの障害その他の当方の責めに帰さない事由により納期が遅延した場合、当方は一切の責任を負わないものとします。</p>
+
+<h4>第8条（納品と検収）</h4>
+<p>当方は、合意した仕様に基づき本成果物を完成させ、お客様に納品します。お客様は納品後7日以内に検収を行い、異議がない場合は検収完了とみなします。当該期間内にご連絡がない場合、お客様は本成果物を承認したものとみなし、以降の修正は有償対応となります。</p>
+
+<h4>第9条（知的財産権）</h4>
+<p>本成果物に関する著作権その他の知的財産権は、お客様より料金の全額お支払いが完了した時点で、お客様に譲渡されるものとします。ただし、制作過程で使用した素材・フォント・アイコン・写真素材・プラグイン・第三者提供のライブラリ等の権利は各権利者に帰属し、本規約による譲渡の対象外とします。当方は、納品後の本成果物を自己の制作実績・ポートフォリオとして、スクリーンショットやURL紹介等の形で公開・紹介できるものとします（お客様が書面または明示的にこれを拒否した場合を除きます）。</p>
+
+<h4>第10条（保証期間）</h4>
+<p>当方は、本成果物の納品日から3年間に限り、当方の制作上の明らかな瑕疵（初期不良・リンク切れ・表示崩れ等）についてのみ、無償で修補対応を行います（以下「保証期間」といいます）。保証期間は3年間とし、納品日をもって起算します。保証期間経過後は、いかなる不具合・修正依頼についても、当方は対応義務を負いません。継続的な保守・更新対応をご希望の場合は、別途「安心サポートプラン（月額制）」へのお申し込みが必要です。</p>
+<p>なお、以下の事由による不具合は、保証期間内であっても無償対応の対象外とし、有償対応または対応不可とします。</p>
+<ul>
+<li>お客様ご自身または第三者による本成果物の改変、編集、書き換えに起因する不具合</li>
+<li>ブラウザ・OS・デバイス・外部サービス（Google・Instagram・各種SNS・カレンダー・マップ等）の仕様変更またはサービス終了に起因する不具合</li>
+<li>ホスティングサービス（GitHub Pages、Cloudflare Pages等）の仕様変更・規約変更・サービス終了に起因する事由</li>
+<li>ドメインの有効期限切れ、DNS設定の変更、レジストラ側の障害等に起因する事由</li>
+<li>自然災害、通信障害、サイバー攻撃、不正アクセスその他の不可抗力</li>
+<li>お客様からの素材・情報に誤りがあったことに起因する表記ミス等</li>
+</ul>
+
+<h4>第11条（免責事項）</h4>
+<p>当方は、本成果物および本サービスの提供に関連して、次の各号に掲げる事項について一切の責任を負わないものとします。お客様は、以下の事項に同意の上、本サービスをご利用いただくものとします。</p>
+<ul>
+<li>本成果物を使用したことにより生じた、お客様の売上・利益・集客・ブランド価値・信用等に関する一切の損害（逸失利益を含む直接・間接・特別・付随的・結果的損害のすべて）</li>
+<li>本成果物の表示・動作・機能・SEO順位・検索エンジンへの掲載状況・アクセス数・コンバージョン率その他の成果について、特定の結果を保証するものではなく、これらに関連して生じた一切の損害</li>
+<li>本成果物の運用・公開に伴う、お客様の端末・機器・データ・プログラム等に生じた機械的損失、データ消失、システム障害その他の損害</li>
+<li>本成果物を経由して発生した、お客様と第三者との間の紛争・クレーム・損害賠償請求その他の一切のトラブル</li>
+<li>ホスティングサービス、ドメイン、外部API、埋め込みサービス（Google MAP、Googleカレンダー、Instagram、各種SNS等）の停止・仕様変更・規約変更・サービス終了に起因する損害</li>
+<li>本成果物を通じてお客様が収集・取得した個人情報の管理・漏洩・流出に関する一切の責任（個人情報の管理責任はお客様に帰属します）</li>
+<li>お客様ご自身または第三者による本成果物の改変・運用ミスに起因する損害</li>
+<li>天災地変、戦争、暴動、テロ、感染症、法令改正、通信障害、サイバー攻撃その他の不可抗力に起因する損害</li>
+</ul>
+<p>万一、当方が法令上お客様に対して損害賠償責任を負う場合であっても、当方の責任の上限は、当該損害の原因となった本サービスについてお客様から現実に受領した対価の額を上限とし、これを超えて一切の責任を負わないものとします。消費者契約法その他の強行法規により本条項の一部が無効とされる場合、当該強行法規により認められる最大限の範囲において、当方の責任は制限されるものとします。</p>
+
+<h4>第12条（禁止事項）</h4>
+<p>お客様は、本サービスの利用にあたり、以下の行為を行ってはならないものとします。違反があった場合、当方は事前通知なく本サービスの提供を停止し、契約を解除することができ、それにより生じた損害について当方は一切責任を負いません。</p>
+<ul>
+<li>法令または公序良俗に違反する行為</li>
+<li>犯罪行為に関連する行為</li>
+<li>第三者の知的財産権・肖像権・プライバシー・名誉その他の権利を侵害する行為</li>
+<li>本成果物のソースコード・デザインを第三者に販売・譲渡・再配布する行為</li>
+<li>当方または第三者になりすます行為</li>
+<li>その他、当方が不適切と判断する行為</li>
+</ul>
+
+<h4>第13条（契約の解除）</h4>
+<p>お客様または当方は、相手方が本規約に違反した場合、催告なく本契約を解除することができます。契約解除に伴う料金の返金は、制作進捗状況に応じて当方が判断するものとし、既に制作に着手している場合は返金対象外となる場合があります。</p>
+
+<h4>第14条（個人情報の取り扱い）</h4>
+<p>当方は、お客様からご提供いただいた個人情報を、本サービスの提供および当方からのご連絡の目的にのみ使用し、お客様の同意なく第三者に提供することはありません。ただし、法令に基づく開示要請があった場合はこの限りではありません。</p>
+
+<h4>第15条（規約の変更）</h4>
+<p>当方は、必要と判断した場合、お客様に通知することなく本規約を変更することができるものとします。変更後の規約は、当方のホームページに掲載された時点から効力を生じるものとします。</p>
+
+<h4>第16条（準拠法・管轄）</h4>
+<p>本規約の解釈および適用は、日本法に準拠するものとします。本サービスに関して当方とお客様との間で紛争が生じた場合、当方の所在地を管轄する裁判所を第一審の専属的合意管轄裁判所とします。</p>
+
+<h4>第17条（協議）</h4>
+<p>本規約に定めのない事項または本規約の解釈について疑義が生じた場合には、当方とお客様は誠意をもって協議の上、これを解決するものとします。</p>
+
+<p style="margin-top:18px;text-align:right;font-size:.7rem;color:var(--text-tertiary)">— 以上 —<br>最終更新日：2026年4月</p>
+
+        </div>
+        <div class="scroll-hint" id="scrollHint">
+          <i data-lucide="chevron-down"></i>最後までスクロールして内容をご確認ください
+        </div>
+      </div>
+
+      <div class="agree-box" id="agreeBox">
+        <input type="checkbox" id="agreeCheck" name="agree" required>
+        <label for="agreeCheck">
+          上記の利用規約・免責事項をすべて確認し、同意します
+          <span class="note">※ 3年間の保証期間と、納品後の免責事項を含むすべての条項に同意の上お申し込みください。</span>
+        </label>
+      </div>
+
+      <button type="submit" class="submit-btn" id="submitBtn" disabled>お申し込みを送信する</button>
+      <p class="footer-note">
+        送信後、5営業日以内にご希望の連絡方法にて折り返しご連絡いたします。<br>
+        お急ぎの場合は <a href="https://www.instagram.com/kazuto086" target="_blank" rel="noopener">Instagram DM</a> からもご連絡いただけます。
+      </p>
+    </div>
+
+  </form>
+</div>
+
+<script>
+lucide.createIcons();
+
+// Terms scroll detection
+const termsBox = document.getElementById('termsBox');
+const scrollHint = document.getElementById('scrollHint');
+const agreeBox = document.getElementById('agreeBox');
+const agreeCheck = document.getElementById('agreeCheck');
+const submitBtn = document.getElementById('submitBtn');
+
+let scrolledToBottom = false;
+termsBox.addEventListener('scroll', () => {
+  if (termsBox.scrollTop + termsBox.clientHeight >= termsBox.scrollHeight - 8) {
+    if (!scrolledToBottom) {
+      scrolledToBottom = true;
+      scrollHint.classList.add('hidden');
+      agreeBox.classList.add('enabled');
+    }
+  }
+});
+
+agreeCheck.addEventListener('change', () => {
+  submitBtn.disabled = !agreeCheck.checked;
+});
+
+// Contact method conditional fields
+const contactMethod = document.getElementById('contactMethod');
+const contactLine = document.getElementById('contactLine');
+const contactIg = document.getElementById('contactIg');
+const contactPhone = document.getElementById('contactPhone');
+const contactLineInput = contactLine.querySelector('input');
+const contactIgInput = contactIg.querySelector('input');
+
+contactMethod.addEventListener('change', () => {
+  const v = contactMethod.value;
+  contactLine.style.display = (v === 'LINE') ? '' : 'none';
+  contactIg.style.display = (v === 'Instagram DM') ? '' : 'none';
+  contactPhone.style.display = (v === '電話') ? '' : 'none';
+  contactLineInput.required = (v === 'LINE');
+  contactIgInput.required = (v === 'Instagram DM');
+});
+
+// File list display
+const fileInput = document.querySelector('input[name="files"]');
+const fileList = document.getElementById('fileList');
+fileInput.addEventListener('change', () => {
+  if (fileInput.files.length === 0) { fileList.textContent = ''; return; }
+  const names = Array.from(fileInput.files).map(f => f.name).join('、');
+  fileList.textContent = '選択中：' + names;
+});
+</script>
+
+</body>
+</html>
