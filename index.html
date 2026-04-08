@@ -511,7 +511,7 @@ img{max-width:100%;display:block}
 .opt-note{text-align:center;margin-top:28px;font-size:.75rem;color:var(--text-tertiary);line-height:1.8}
 
 /* Testimonials */
-.testi-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:56px}
+.testi-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-top:56px}
 .testi-card{padding:32px 24px;border-radius:var(--radius-lg);background:#fff;border:1px solid var(--border);transition:all .6s cubic-bezier(.16,1,.3,1)}
 .testi-card:hover{transform:translateY(-4px);box-shadow:var(--shadow-md)}
 .testi-stars{display:flex;gap:2px;margin-bottom:14px}
@@ -941,6 +941,11 @@ footer a{color:var(--blue)}
       <div class="testi-text" data-en="I originally just asked for a website, but on a whim I said “could you also build a shogi app?” — and a few days later he delivered a fully original shogi web app. His creativity and responsiveness are next-level!">本来はHP制作のお願いだったんだけど、ついでに「こんな将棋アプリ作れない？」って聞いたら、数日後にオリジナルの将棋WEBアプリまで作ってくれた（笑）。発想と対応力が半端ない！</div>
       <div class="testi-author"><div class="testi-avatar" style="background:linear-gradient(135deg,#FFF3E0,#FFCC80);display:flex;align-items:center;justify-content:center"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#E65100" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg></div><div class="testi-info"><span class="testi-name">S.N</span><span class="testi-role" data-en="Shogi enthusiast / Website client">将棋ファン / HP制作のご依頼主</span></div></div>
     </div>
+    <div class="testi-card reveal rd4">
+      <div class="testi-stars"><svg class="testi-star" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg><svg class="testi-star" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg><svg class="testi-star" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg><svg class="testi-star" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg><svg class="testi-star" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg></div>
+      <div class="testi-text" data-en="I wanted a site that showcased Murakami Flowers NFTs in a beautiful way. KAZUTO instantly understood the vision — the colors, layout, everything — and turned it around in no time. Even my NFT friends were blown away by the quality!">村上隆のMurakami Flowers NFTを綺麗に見せるサイトが欲しかったんだけど、KAZUTOに相談したら一発でイメージを汲み取ってくれた。色使いもレイアウトも完璧で、NFT仲間にも「このサイトどこで作ったの？」って聞かれまくってます（笑）</div>
+      <div class="testi-author"><div class="testi-avatar" style="background:linear-gradient(135deg,#FFE0F0,#FFB6D9);display:flex;align-items:center;justify-content:center"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#C2185B" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg></div><div class="testi-info"><span class="testi-name">K.M</span><span class="testi-role" data-en="Murakami Flowers NFT collector">Murakami Flowers NFTコレクター</span></div></div>
+    </div>
   </div>
 
   <!-- Monitor Sites -->
@@ -949,15 +954,17 @@ footer a{color:var(--blue)}
     <h2 class="sec-headline reveal rd1" style="font-size:clamp(1.8rem,4vw,2.5rem)" data-en="Portfolio & Open Slots">モニターサイト一覧</h2>
     <p class="sec-desc reveal rd2" data-en="Our portfolio and currently available slots.">制作実績と、現在募集中の枠です。</p>
     <div class="monitor-carousel">
-      <!-- 1: モニター募集中 -->
-      <div class="monitor-card recruiting reveal rd1">
-        <div class="mc-recruit-inner">
-          <div class="mc-recruit-icon"><i data-lucide="plus"></i></div>
-          <div class="mc-recruit-text" data-en="Open slot">モニター募集中</div>
-          <div style="font-size:.62rem;color:var(--text-tertiary);text-align:center" data-en="Built for ¥19,800 (tax excl.)<br>Featured on this portfolio site.">19,800円（税抜）で制作<br>当サイトに掲載させていただきます</div>
+      <!-- 1: 村上隆 Murakami NFT（納品済み） -->
+      <div class="monitor-card reveal rd1">
+        <div class="mc-top" style="background:linear-gradient(160deg,#FF6B9D,#C44569)">
+          <div class="mc-top-overlay"></div>
+          <span class="mc-status live" data-en="Live">公開中</span>
+          <div style="position:relative;z-index:2;text-align:center;font-size:3rem">🌸</div>
         </div>
-        <div class="mc-body" style="padding-top:0;text-align:center">
-          <a href="#cta" class="mc-link" data-en="Apply →">応募する →</a>
+        <div class="mc-body">
+          <div class="mc-name" data-en="Murakami Flowers NFT">村上隆 Murakami NFT</div>
+          <div class="mc-desc" data-en="A portal site for Takashi Murakami's NFT collection 'Murakami Flowers'.">村上隆のNFTコレクション「Murakami Flowers」のポータルサイト。</div>
+          <a href="https://murakami-flowers-proxy.vercel.app" target="_blank" rel="noopener" class="mc-link" data-en="Visit site →">サイトを見る →</a>
         </div>
       </div>
       <!-- 2: be LIFE 三軒茶屋店（納品済み） -->
@@ -970,7 +977,7 @@ footer a{color:var(--blue)}
         <div class="mc-body">
           <div class="mc-name" data-en="be LIFE Sangenjaya">be LIFE 三軒茶屋店</div>
           <div class="mc-desc" data-en="Personal gym site with a live Google Calendar reservation system.">パーソナルジムのHP。Googleカレンダー連携の予約システム付き。</div>
-          <a href="https://kazmac88.github.io/ai-kazuto-web/samples/belife/" target="_blank" rel="noopener" class="mc-link" data-en="Visit site →">サイトを見る →</a>
+          <a href="https://belife-gym.vercel.app" target="_blank" rel="noopener" class="mc-link" data-en="Visit site →">サイトを見る →</a>
         </div>
       </div>
       <!-- 3: 将棋WEBアプリ（納品済み） -->
@@ -983,7 +990,7 @@ footer a{color:var(--blue)}
         <div class="mc-body">
           <div class="mc-name" data-en="A custom shogi web app">自分だけの将棋WEBアプリ</div>
           <div class="mc-desc" data-en="An original shogi app that grew out of a website project.">HP制作のご依頼から派生して誕生したオリジナルの将棋アプリ。</div>
-          <a href="https://amazing-longma-7dcc04.netlify.app" target="_blank" rel="noopener" class="mc-link" data-en="View the app →">アプリを見る →</a>
+          <a href="https://cryptoninjagame-shogi.vercel.app" target="_blank" rel="noopener" class="mc-link" data-en="View the app →">アプリを見る →</a>
         </div>
       </div>
       <!-- 4: 老人ホームガイド（納品済み） -->
@@ -997,6 +1004,19 @@ footer a{color:var(--blue)}
           <div class="mc-name" data-en="Nursing Home Guide">老人ホームガイド</div>
           <div class="mc-desc" data-en="A search and comparison site for senior care facilities. Built for a longtime friend.">高齢者施設の検索・比較サイト。長年の仲間からの依頼で制作。</div>
           <a href="https://2nd-lifesearch.pages.dev" target="_blank" rel="noopener" class="mc-link" data-en="Visit site →">サイトを見る →</a>
+        </div>
+      </div>
+      <!-- 5: TimeLock SOL（納品済み） -->
+      <div class="monitor-card reveal rd5">
+        <div class="mc-top" style="background:linear-gradient(160deg,#7B1FA2,#4A148C)">
+          <div class="mc-top-overlay"></div>
+          <span class="mc-status live" data-en="Live">公開中</span>
+          <div style="position:relative;z-index:2;text-align:center;font-size:3rem">🔒</div>
+        </div>
+        <div class="mc-body">
+          <div class="mc-name" data-en="TimeLock SOL">TimeLock SOL</div>
+          <div class="mc-desc" data-en="A Solana-based token time-lock service. Lock and schedule token releases on-chain.">Solanaベースのトークンタイムロックサービス。オンチェーンでトークンのロック＆リリースを管理。</div>
+          <a href="https://timelock-sol.vercel.app" target="_blank" rel="noopener" class="mc-link" data-en="Visit site →">サイトを見る →</a>
         </div>
       </div>
     </div>
@@ -1167,7 +1187,9 @@ footer a{color:var(--blue)}
     {k:['map','マップ','地図','店舗','アクセス','営業時間','location'],
      a:'MAP+ Plan（¥39,800）で Google MAP埋め込み対応。店舗アクセス情報、営業時間・定休日、電話タップ発信、予約導線まで含まれます。実店舗をお持ちの方におすすめです。'},
     {k:['belife','be life','ビーライフ','三軒茶屋','ジム','gym','パーソナル','予約'],
-     a:'be LIFE 三軒茶屋店のサンプルサイトを用意しています！パーソナルジムのHPで、Googleカレンダー連携の予約システム付き（月額費用ゼロで動作）。モニターサイト一覧の「サイトを見る→」から実際に触れます。'},
+     a:'be LIFE 三軒茶屋店のサイトを公開中！パーソナルジムのHPで、Googleカレンダー連携の予約システム付き（月額費用ゼロで動作）。モニターサイト一覧の「サイトを見る→」から実際に触れます。'},
+    {k:['村上隆','murakami','nft','フラワー','flowers','花'],
+     a:'村上隆のMurakami Flowers NFTのポータルサイトも制作しました！NFTコレクションを美しく閲覧できるサイトです。モニターサイト一覧から実際にご覧いただけます。'},
     {k:['予約','reservation','booking','カレンダー','calendar'],
      a:'予約システムはGoogleカレンダー連携で月額費用ゼロで構築できます！実例として be LIFE 三軒茶屋店のサンプルをご覧ください。オーナーの方はGoogleカレンダーを見るだけで予約管理ができて便利です。'},
     {k:['キャラ','キャラクター','イラスト','似顔絵','アイコン','character','original'],
